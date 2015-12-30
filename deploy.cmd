@@ -116,17 +116,20 @@ if EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   popd
 )
 
+echo :: 3. Run grunt prod task
 :: 3. Run grunt prod task
 pushd %DEPLOYMENT_SOURCE%
 call !GRUNT_CMD! prod
 popd
 
+echo :: 4. KuduSync
 :: 4. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_DIST%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
+echo :: 5. Install npm packages
 :: 5. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd %DEPLOYMENT_TARGET%
