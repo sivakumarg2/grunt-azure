@@ -93,7 +93,7 @@ call :SelectNodeVersion
 
 echo Node version is selected, %DEPLOYMENT_TARGET%
 :: 2. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+IF EXIST "%DEPLOYMENT_TARGET%\grunt-azure\package.json" (
 echo package.js is exists
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
