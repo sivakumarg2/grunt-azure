@@ -43,11 +43,11 @@ IF NOT DEFINED KUDU_SYNC_CMD (
   echo Installing Kudu Sync
   call npm install kudusync -g --silent
   IF !ERRORLEVEL! NEQ 0 goto error
-
-  :: Locally just running "kuduSync" would also work
-  SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
 )
 
+:: Locally just running "kuduSync" would also work
+SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
+  
 IF NOT DEFINED GRUNT_CMD (
   :: INSTALL GRUNT
   echo Installing Grunt
@@ -116,10 +116,10 @@ if EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   popd
 )
 
-echo :: 3. Run grunt prod task
+echo :: 3. Run grunt prod task - changed to grunt build -f
 :: 3. Run grunt prod task
 pushd %DEPLOYMENT_SOURCE%
-call !GRUNT_CMD! prod
+call !GRUNT_CMD! grunt build -f
 popd
 
 echo :: 4. KuduSync
