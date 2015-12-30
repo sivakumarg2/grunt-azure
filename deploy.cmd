@@ -91,7 +91,7 @@ echo Handling node.js grunt deployment.
 :: 1. Select node version
 call :SelectNodeVersion
 
-echo Node version is selected
+echo Node version is selected, %DEPLOYMENT_TARGET%
 :: 2. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 echo package.js is exists
