@@ -119,7 +119,7 @@ if EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 echo :: 3. Run grunt prod task - changed to grunt build -f
 :: 3. Run grunt prod task
 pushd %DEPLOYMENT_SOURCE%
-call !GRUNT_CMD! grunt build -f
+call !GRUNT_CMD! prod
 popd
 
 echo :: 4. KuduSync
