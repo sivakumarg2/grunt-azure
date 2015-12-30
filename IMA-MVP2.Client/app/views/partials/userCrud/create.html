@@ -1,0 +1,15 @@
+﻿<h1>User Create</h1>
+<div class="card" ng-controller="UserController">
+    <h2>Create User</h2>
+    <div class="entry">
+        <h2>Minimum Required Fields</h2>
+        Name: <input name="name" ng-model="newUser.name"/><br />
+        CompanyId: <input name="CompanyId" ng-model="newUser.CompanyId" type="number" /><br />
+        Email: <input name="email" ng-model="newUser.email" /><br />
+        Reset Password Token: <input name="reset_password_token" ng-model="newUser.reset_password_token" />
+        <h2>Optional Fields</h2>
+        Title: <input name="title" ng-model="newUser.title" /><br />
+        Location: <input name="location" ng-model="newUser.location" /><br />
+        <input type="submit" ng-click="createUser()" />
+    </div>
+</div>

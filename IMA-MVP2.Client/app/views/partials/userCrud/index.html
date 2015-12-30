@@ -1,0 +1,13 @@
+﻿<h1>Users Index</h1>
+<div class="card" ng-controller="UserController">
+    <h2>All Users <span ui-sref="user-create">(Add New)</span></h2>
+    <div class="list-view">
+        <header>
+            <span>Name</span>
+        </header>
+
+        <div class="entry" ng-repeat="user in Users" ui-sref="user({id:user.id})">
+            <span>{{user.name}}</span>
+        </div>
+    </div>
+</div>

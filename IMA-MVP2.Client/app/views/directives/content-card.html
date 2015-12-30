@@ -1,0 +1,9 @@
+<div class="imethod-lite-card" ng-class="{'card-opened': expanded}" ng-init="initializeQuestionArray(4)">
+    <div class="card-header">
+        <span ng-hide="view_type"  class="fa pull-right" ng-class="{'fa-chevron-up': expanded, 'fa-chevron-down':!expanded}"  ng-click="collapseCard()"></span>
+        <div class="card-title">
+            <span>{{ title }}:</span> <span>{{numquestions}} Questions</span><span ng-if="time > 0">({{time}} mins)</span><span class="card-status">{{ status }}</span>
+        </div>
+    </div>
+    <div ng-show="showcontent" ng-transclude status="status" id="card-content" ng-class="{'ng-hide': !expanded}"></div>
+</div>

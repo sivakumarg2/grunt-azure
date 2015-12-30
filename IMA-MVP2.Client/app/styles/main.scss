@@ -1,0 +1,62 @@
+@import "bootstrap-sass/_bootstrap.scss";
+@import "font-awesome.scss";
+@import "bourbon/_bourbon.scss";
+@import "partials/common/_variables.scss";
+@import "partials/common/_mixins.scss";
+@import "partials/common/_elements.scss";
+@import "partials/common/_typography.scss";
+@import "partials/common/_layout.scss";
+@import "partials/common/_login.scss";
+
+// From components folder
+@import "components/_card.scss";
+@import "components/image-circle.scss";
+@import "components/sidebar.scss";
+@import "components/modal.scss";
+@import "components/dropdown-checklist.scss";
+@import "components/checkbox-nice.scss";
+@import "components/input-title.scss";
+@import "components/image-container.scss";
+@import "components/keyword-tags.scss";
+@import "components/tooltip-icon.scss";
+@import "components/button-fixed-width.scss";
+@import "components/text-area-sizes.scss";
+@import "components/imethod-lite-card.scss";
+@import "components/rotated.scss";
+@import "components/lite-progress-bar.scss";
+@import "components/disabled.scss";
+@import "components/save-and-continue.scss";
+@import "components/preloader.scss";
+@import "components/medium-circle-button.scss";
+@import "components/save-row.scss";
+
+// From pages folder
+@import "partials/pages/_top-nav-bar.scss";
+@import "partials/pages/_create-idea.scss";
+@import "partials/pages/_imethod-lite-idea-create.scss";
+@import "partials/pages/_imethod-lite-module-form.scss";
+@import "partials/pages/_imethod-side-menu.scss";
+@import "partials/pages/_idea-index.scss";
+@import "partials/pages/_imethod-lite-pitch.scss";
+@import "partials/pages/_ideas-page-meta.scss";
+@import "partials/pages/_content-card-qa.scss";
+@import "partials/pages/_profile.scss";
+@import "partials/pages/_people-page.scss";
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
+}
+.debug{
+  height:300px;
+  width:500px;
+  padding:20px;
+  border:1px solid;
+  background:#333;
+  color:#fff;
+  overflow:auto;
+}

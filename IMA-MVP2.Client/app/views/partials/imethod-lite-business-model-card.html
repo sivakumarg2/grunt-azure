@@ -1,0 +1,74 @@
+<div class="imethod-lite-card business-model-card-colors" id="business-model-card">
+    <div class="card-header">
+        <span id="business-model-chevron" class="pull-right fa fa-chevron-up" ng-animate="{enter: 'rotate', leave: 'rotate-back'}" ng-class="{true: 'rotate', false: 'rotate-back'}[businessModelCollapse]" ng-click="collapseCardToggle('businessModelCollapse', true)"></span>
+        <div class="card-title">
+            <span>Business Model:</span>
+            <span>{{businessModelQuestions.questions.length}} Questions</span>
+            <span ng-if="moduleTimeLeft(businessModelQuestions.questions) > 0">({{moduleTimeLeft(businessModelQuestions.questions)}} mins)</span><span></span>
+            <span class="card-status">{{ moduleStatus(businessModelQuestions.questions) }}</span>
+        </div>
+    </div>
+    <div class="annimation-show-hide" ng-show="businessModelCollapse">
+        <ul class="content-card-qa">
+            <li ng-repeat="question in businessModelQuestions.questions" ng-init="index = $index">
+                <span class="question-header">
+                    <span class="question-text"><strong>{{$index + 1}}. {{ question.q }} </strong></span>
+                    <span class="fa fa-question-circle tooltip-icon question-text" data-toggle="tooltip" title="{{ question.tooltip }}" data-placement="right"></span>
+                    <span class="pull-right question-text controls" ng-show="question.c">
+                        <!-- <button ng-show="false" ng-click="show_input($index); question.c=false; question.a=showanswer" class="btn-link">Cancel</button>
+                        <span ng-show="false">|</span>
+                        <button ng-click="saveCard('businessModel'); question.c=false;showanswer=question.a" class="btn-link">Save</button> -->
+                    </span>
+                    <span class="pull-right question-text controls" ng-show="!question.c">
+                        <!-- <button ng-show="editPage" ng-click="question.c=true; cancel=true;showanswer=question.a;focusToControl('#business_' +index);" class="btn-link">Edit</button> -->
+                    </span>
+                </span>
+                <h5 ng-show="view_type">
+                    <span ng-show="{{ question.type == 'text' }}">{{ question.a }} </span>
+                    <span ng-show="{{ question.type == 'checkbox' }}">{{ isAffirmative(question.a) }}</span>
+                </h5>
+
+                <form ng-hide="view_type">
+                    <h5 id="container_$index" ng-show="{{ question.type == 'text' }}">
+                        <!-- Input -->
+                        <!-- <div ng-init="showanswer=''; cancel=false" class="edit-state" ng-show="question.c">
+                            <textarea type="text" id="business_{{index}}" ng-model="question.a" placeholder="{{ question.placeholder }}" class="form-control" rows="5" />
+                        </div> -->
+                        <!-- Display -->
+                        <!-- <div class="view-state" ng-show="!question.c">
+                            {{ question.a }}
+                        </div> -->
+
+                        <div class="edit-state" ng-show="businessModelCardEditState">
+                            <textarea type="text" id="business_{{index}}" ng-model="question.a" placeholder="{{ question.placeholder }}" class="form-control medium-text-input" rows="5" />
+                        </div>
+                        <div class="view-state" ng-show="!businessModelCardEditState">
+                            {{ question.a }}
+                        </div>
+
+                    </h5>
+                    <h5 ng-show="{{ question.type == 'checkbox' }}">
+                        <div class="select-boolean">
+                            <div class="row">
+                                <div class="col-md-1"><span ng-click="question.a = 1">Yes<span ng-if="question.a == 1" class="fa fa-check ans-icon"></span></span></div>
+                                <div class="col-md-11"><span ng-click="question.a = 0">No<span ng-if="question.a == 0" class="fa fa-check ans-icon"></span></span></div>
+                        </div>
+                        <!--<input type="checkbox" ng-checked="question.a">
+                        <label>
+                            <input type="{{ question.type }}" ng-model="question.a" placeholder="{{ question.placeholder }}" />
+                            <div id="display_{{$index}}">{{ isAffirmative(question.a) }}</div>
+                        </label>-->
+                    </h5>
+                </form>
+            </li>
+        </ul>
+        <div class="save-row">
+            <div ng-click="saveCard('businessModel'); businessModelCardEditState=true;" class="medium-image-circle medium-circle-button" ng-show="businessModelCardEditState">
+                <span class="fa fa-floppy-o"></span>
+            </div>
+            <div ng-click="businessModelCardEditState=true;" class="medium-image-circle medium-circle-button" ng-show="!businessModelCardEditState">
+                <span class="fa fa-pencil"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@import '../partials/common/_variables.scss';
+@import "../bourbon/_bourbon.scss";
+
+// for all the image circles
+
+.small-image-circle, .medium-image-circle, .big-image-circle, .mini-image-circle {
+    background-size: 100% 100%;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-athens-gray;
+
+    .badge {
+        background-color: $color-mirage;
+        border: 2px solid white;
+        padding-left: 5px;
+        padding-right: 5px;
+        position: absolute;
+        right: -11px;
+        top: -1px;
+    }
+
+    .fa-user {
+        color: $color-bombay;
+    }
+}
+
+.mini-image-circle{
+    height: 30px;
+    width: 30px;
+    text-align:center
+}
+.small-image-circle {
+    height: 40px;
+    width: 40px;
+}
+
+.medium-image-circle {
+    height: 45px;
+    width: 45px;
+}
+
+.big-image-circle {
+    height: 55px;
+    width: 55px;
+}

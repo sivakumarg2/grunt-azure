@@ -1,0 +1,14 @@
+﻿@import "../partials/common/_variables.scss";
+
+.keyword-tags {
+    display: inline-block;
+    position: relative;
+
+    .fa-times-circle {
+    	position: absolute;
+        top: 2px;
+    	left: -20px;
+    	font-size: 16px;
+        color: $color-bombay;
+    }
+}

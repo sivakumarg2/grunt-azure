@@ -1,0 +1,104 @@
+// General tweaks to bootstrap
+@import "_variables.scss";
+
+
+.login-card{	 
+	  margin: -25px -15px;
+	  justify-content: center;
+      text-align: center;
+      background-color: white;
+	  padding: 125px 0 155px 0;   
+     
+    }
+	input{
+		width: 480px; height: 52px;
+		padding-left: 25px;
+		color: $color-black;
+		font-size: 23px;
+    }
+	.list_item{
+        padding-bottom:20px;
+		color: $color-tuna;
+		font-size: 23px;
+    }
+	
+	 .btn-signup{
+        width: 110px; height: 50px;
+        color: $color-black;
+		border-radius: 25px;
+        background: white;
+        font-size: 17px;
+        border: 2px solid $color-black;
+        font-weight: bold;
+        padding: 0;
+        vertical-align: central;
+		outline-style: none;
+      }
+	  .logout-btn-signUp{
+        width: 210px; height: 50px;
+        color: $color-black;
+		border-radius: 0;
+		box-shadow: none;
+		background-color: transparent;
+		border-color: transparent;
+        background: white;
+        font-size: 17px;       
+        font-weight: bold;
+        padding: 0;
+        vertical-align: central;
+		outline-style: none;
+      }
+	  .logout-btn-iMethod{
+        width: 250px; height: 50px;
+        color: $color-black;
+		border-radius: 25px;
+        background: white;
+        font-size: 17px;
+        border: 2px solid $color-black;
+        font-weight: bold;
+        padding: 0;
+        vertical-align: central;
+		outline-style: none;
+      }
+	  .card-header{
+	   color: $color-tuna;
+	   font-size: 23px;
+	   padding-bottom: 5px;
+	   margin-top: 5px
+	  }
+	  .card-title{
+	   color: $color-SignUp-toptext-unfocus-gray;
+	   font-size: 23px;
+	   padding-bottom: 35px;
+	  }
+
+	  .reset-header{
+	   color: $color-tuna;
+	   font-size: 23px;
+	   padding-bottom: 30px;
+	   margin-top: 5px
+	  }
+
+	.top-text-focus{
+         color: $color-tuna;
+		 font-size: 23px;
+		 text-decoration: underline;
+		 padding: 0 10px 45px 20px;
+		 box-shadow: none;
+		 background-color: transparent;
+		 border-color: transparent;		
+		 outline-style: none;	
+		 margin: 0 10px 0;			 
+    }
+	.top-text-unfocus{        
+		 color: $color-SignUp-toptext-unfocus-gray;
+		 font-size: 23px;
+		 padding: 0 10px 45px 20px;
+		 box-shadow: none;
+		 background-color: transparent;
+		 border-color: transparent;		
+		 outline-style: none;
+		 margin: 0 10px 0;		 
+    }
+	
+

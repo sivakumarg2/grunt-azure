@@ -1,0 +1,73 @@
+﻿// Tweak bootstrap's modal
+
+.modal {
+    .modal-dialog {
+		position: absolute;
+		margin: auto;
+		top:25%;
+		bottom:0;
+		left:0;
+		right:0;
+       width: 750px;
+
+        .modal-content {        
+
+            .modal-header {
+                border-bottom: none;
+				height:50px;
+				padding: 10px 10px 10px 10px;
+				border-bottom: 1px solid #d3d3d3;
+                
+                .modal-title {
+                    border: none; 
+                }
+
+                .close {
+                    margin: -62px 0 0 0;
+                    display: flex;
+                    align-items: center;
+
+                    .close-text {
+                        display: inline-block; 
+                        margin-right: 10px;
+                    }
+
+                    .fa-times {
+                        font-size: 35px;
+                    }
+                }
+            }
+
+            .modal-body {
+				padding:10px 10px 10px 10px;
+				border-style: none;				
+
+				.idea-item-modal-content{
+
+					.idea-item-modal-left-section{
+						width: 490px;
+					}
+
+					.idea-item-modal-right-section{
+						width: 160px;
+						padding-left:10px;
+
+						.idea-item-modal-seperator li{
+								  padding-top:10px;
+								  .btn{
+									width:200px;
+								  }
+							}
+					}
+
+				}
+            }
+
+			.modal-footer{
+					.btn{
+						width:160px;
+					}
+            }
+        }
+    }
+}

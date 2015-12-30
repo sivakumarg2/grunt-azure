@@ -1,0 +1,119 @@
+<div class="idea-index" ng-controller="IdeaController">
+  <div class="imethod-lite-card">
+    <div class="card-header">
+      <div class="card-title">
+        <span class="my-ideas-title">My ideas</span>
+      </div>
+    </div>
+	<div class="my-idea-body">
+        <div class="group-section" ng-show="ideaGroups.length>0">
+            <div ng-init="editGroupHeader = false;modifiedHeader = ideaGroup.name;group_id = ideaGroup.id" ng-repeat="ideaGroup in ideaGroups" class="section">
+                <div>
+                    <!--Header-->
+                    <div ng-show="!editGroupHeader">
+                        <span>
+                            <a ng-click="editGroupHeader=true"><span ng-model="ideaGroup.name">{{ideaGroup.name}}</span></a>
+                        </span>
+                        <div class="pull-right dropdown" uib-dropdown>
+                            <span ng-click="status = true" class="fa fa-chevron-down dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="uib-dropdown-menu dropdown-menu pop-menu" ng-init="status = false;addIdeatop = false;topname=''">
+                                <li>
+                                    <span><a class="pull" ng-click="editGroupHeader=false;deleteIdeaGroup(ideaGroup)">Delete</a></span>
+                                </li>
+                                <li>
+                                    <span><a class="pull" ng-click="addIdeatop=true">Add new idea</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div ng-show="editGroupHeader">
+                        <input class="form-control" type="text" ng-model="ideaGroup.name" />
+                        <a ng-click="modifiedHeader = ideaGroup.name;saveIdeaGroup(ideaGroup);editGroupHeader=true;">Save</a>
+                        <a ng-click="ideaGroup.name = modifiedHeader;editGroupHeader = false">Cancel</a>
+                    </div>
+                </div>
+                <div class="content">
+                    <div>                                           
+                        <div ng-show="addIdeatop">
+                            <input class="form-control" type="text" ng-model="topname" />
+                            <a ng-click="submitIdea(topname, ideaGroup.id);addIdeatop=false;">Save</a>
+                            <a ng-click="topname = '';addIdeatop = false">Cancel</a>
+                        </div>
+                    </div>
+                    <ul ng-repeat="idea in myIdeas | filter : {idea_group_id: group_id} | orderBy : sortModel.id">
+                        <li ng-if="group_id == idea.idea_group_id">
+                            <span><a ng-click="openIdea(idea.idea_id)">{{idea.name}}</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-init="addIdea = false">
+                    <!--Footer-->
+                    <div ng-show="!addIdea" class="add-idea">
+                        <a ng-click="addIdea = true">
+                            <span>
+                                + Add New idea
+                            </span>
+                        </a>
+                    </div>
+                    <div ng-show="addIdea">
+                        <input class="form-control" type="text" ng-model="name" />
+                        <a ng-click="submitIdea(name, ideaGroup.id);addIdea=false;">Save</a>
+                        <a ng-click="name = '';addIdea = false">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="new-group-action" ng-init="addIdeaGroup = false; newIdeaGroup.user_id = currentUserId ">
+                <div ng-show="!addIdeaGroup" class="add-idea">
+                    <a ng-click="addIdeaGroup = true">
+                        Add Idea Group
+                    </a>
+                </div>
+                <div ng-show="addIdeaGroup">
+                    <input class="form-control" type="text" ng-model="newIdeaGroup.name" />
+                    <a ng-click="saveIdeaGroup(newIdeaGroup);addIdeaGroup=false;">Save</a>
+                    <a ng-click="newIdeaGroup.name = '';addIdeaGroup = false">Cancel</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+	<!--<div class="list-view">
+      <header>
+          <span>Votes</span>
+          <span ng-click="sortIdeas('name')">Name</span>
+          <span>Challenge</span>
+          <span ng-click="sortIdeas('idea_status_id')">Idea Status</span>
+          <span>Team</span>
+          <span ng-click="sortIdeas('updated_at')">Modified</span>
+          <span>Progress</span>
+          <span></span>
+      </header>
+        <div class="entry" ng-repeat="idea in myIdeas | orderBy : sortModel.columnName">
+            <span>{{idea.votes}}</span>
+            <span><button class="btn-link" ng-click="showIdea(idea.idea_id, idea.idea_owner_id)">{{idea.name}}</button></span>
+            <span>
+                <ul>
+                    <li ng-repeat="challenge_id in idea.challenge_ids">
+                        {{getChallengeName(challenge_id)}}
+                    </li>
+                </ul>
+            </span>
+            <span ng-if="idea.idea_status_id == STATUS.DRAFT">Draft</span>
+            <span ng-if="idea.idea_status_id == STATUS.PUBLISHED">Published</span>
+            <span>
+                <div class="big-image-circle" style="background-image: url('{{idea.owner_avatar_url}}');">
+                    <span class="fa fa-user" ng-hide="idea.owner_avatar_url"></span>
+                    <span ng-if="idea.teamMemberCount > 1" class=" badge">{{idea.teamMemberCount}}</span>
+                </div>
+            </span>
+            <span ng-bind="idea.updated_at | date:'MMMM dd, yyyy'">{{idea.updated_at}}</span>
+            <span>
+                <div class="lite-progress-bar">
+                    <div ng-repeat="isModuleComplete in idea.progressArray track by $index" ng-class="{'complete': isModuleComplete}"></div>
+                </div>
+            </span>
+            <span class="fa fa-times" ng-click="deleteIdea(idea)" ng-show="idea.idea_owner_id == currentUserId">
+            </span>
+        </div>
+    </div>-->
+  </div>
+</div>

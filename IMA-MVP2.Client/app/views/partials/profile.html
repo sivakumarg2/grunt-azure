@@ -1,0 +1,321 @@
+<div ng-controller='ProfileController'>
+<div class="profile" ng-init="profileView=true; editView=false">
+  <!--Profile View-->
+  <div class="view-card" ng-show="profileView">
+    <div class="row">
+      <div class="big-image-circle" style="background-image: url('{{user.avatar_url}}');">
+          <span class="fa fa-user fa-3x" ng-hide="user.avatar_url"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <span>{{user.name}}</span>
+      </div>
+    </div>
+    <div class="row role-location-row">
+      <div class="role" ng-show="user.role">
+        <span class="fa fa-tag space"></span>{{user.role}}
+      </div>
+      <div class="location" ng-show="user.location">
+        <span class="fa fa-map-marker space"></span>{{user.location}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 edit-profile">
+        <label for="profile" class="input-title"><span class="fa fa-pencil space"></span> Edit Profile </label>
+        <input ng-hide="1" id="profile" type="button" ng-click="editView=true; profileView=false">
+      </div>
+    </div>
+  </div>
+  <!--Edit View-->
+
+  <div class="main-card" ng-show="editView">
+    <div class="container-fluid">
+      <div class="row pull-middle">
+        <div class="col-md-9 title">
+          <h2>Edit Profile</h2>
+        </div>
+	   <div class="col-md-1 top-btn-cancel">
+          <button class="btn-link" ng-click="editView=false; profileView=true">Cancel</button>
+        </div>
+        <div class="col-md-1 top-btn-save">
+          <button class="btn" ng-click="saveUser()">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <label for="my-profile-first-name" class="col-md-6 input-title">
+          First Name
+        </label>
+        <label for="my-profile-linkedin" class="col-md-6 input-title">
+          LinkedIn
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <input id="my-profile-first-name" name="first-name" ng-model="user.first_name" placeholder="First name here" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <input id="my-profile-linkedin" name="linkedin" ng-model="user.linkedin_url" placeholder="LinkedIn URL" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <label for="my-profile-last-name" class="col-md-6 input-title">
+          Last Name
+        </label>
+        <label for="my-profile-twitter" class="col-md-6 input-title">
+          Twitter
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <input id="my-profile-last-name" name="last-name" ng-model="user.last_name" placeholder="Last name here" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <input id="my-profile-twitter" name="twitter" ng-model="user.twitter_url" placeholder="Twitter URL" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <label for="my-profile-resume" class="col-md-6 input-title">
+          Resume
+        </label>
+        <label for="my-profile-facebook" class="col-md-6 input-title">
+          Facebook
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <textarea id="my-profile-resume" rows="5" name="resume" ng-model="user.resume" placeholder="Mini reusme can go here" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <input id="my-profile-facebook" name="facebook" ng-model="user.facebook_url" placeholder="Facebook URL" class="form-control" />
+        </div>
+         <div class="col-md-3">
+          <label ng-hide="user.avatar_url" for="profile-avatar" class="input-title"><span class="fa fa-picture-o"></span> Choose Profile Picture</label>
+          <input ng-hide="1" id="profile-avatar" type="file" file-model="fileToUpload">
+          <div ng-show="user.avatar_url" class="profile-pic">
+              <a ng-show="uplodedFilename" target="_blank" ng-href="{{user.avatar_url}}"> {{uplodedFilename}}</a>
+              <a ng-hide="uplodedFilename" target="_blank" ng-href="{{user.avatar_url}}">Profile Pic</a>
+            <label for="profile-avatar"><span>Edit</span></label>
+            <span ng-click="removeAvatar(user.id)">Remove</span>
+          </div>
+          </div>
+      </div>
+      <div class="row">
+        <label for="my-profile-role" class="col-md-6 input-title">
+          Role
+        </label>
+        <label for="my-profile-email" class="col-md-6 input-title">
+          Email
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <input id="my-profile-role" name="role"
+                   uib-typeahead="(tag.tag_name) for tag in roleTags | filter:$viewValue | limitTo:9"
+                   typeahead-on-select="onSelect($item, $model, $label)"
+                   typeahead-template-url="customTemplate.html"
+                   ng-model="user.role" placeholder="Enter role" class="form-control" />
+        </div>
+          <div class="col-md-6"><input id="my-profile-email" name="email" ng-model="user.email"
+                                          placeholder="Email" class="form-control" />
+              
+          </div>
+      </div>
+      <div class="row">
+        <label for="my-profile-location" class="col-md-6 input-title">
+          Location
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <input id="my-profile-location"
+                   uib-typeahead="(tag.tag_name) for tag in locationTags | filter:$viewValue | limitTo:9"
+                   typeahead-on-select="onSelect($item, $model, $label)"
+                   name="location"
+                   ng-model="user.location"
+                   typeahead-template-url="customTemplate.html"
+                   placeholder="Enter location"
+                   class="form-control" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Experience Card -->
+  <div class="experience-card">
+    <div class="card-header">
+	<label class="card-title">
+        Experience
+      </label>
+    </div>
+          <div class="row">
+            <label for="my-profile-experience" class="col-md-4 input-title">
+              Add Experience
+            </label>
+          </div>
+          <div class="row pull-middle">
+              <div class="col-md-8">
+                  <input id="my-profile-experience" name="company-name"
+                         uib-typeahead="(tag.tag_name) for tag in experienceTags | filter:$viewValue | limitTo:9"
+                         typeahead-template-url="customTemplate.html"
+                         typeahead-on-select="onSelect($item, $model, $label)"
+                         ng-model="modifyExperience.company" placeholder="Company Name" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                  <dropdown-checklist options="EXPERIENCEROLE" selection="modifyExperience.role"></dropdown-checklist>
+              </div>
+              <div class="col-md-1">
+                  <button name="add-exp" ng-click="addExperience(modifyExperience.id)" class="btn low-btn">Add</button>
+              </div>
+          </div>
+      <div class="row">
+          <div class="profile-edit profile-dropdown" ng-if="user.experience.length > 0">
+              <div ng-repeat="exp in user.experience" ng-init="save = false">
+                  <span ng-hide="save">
+                      <div class="profile-line">
+                          <span>{{exp.company}}</span>
+                          <span>&middot;</span>
+                          <span>{{EXPERIENCEROLE[exp.role].name}}</span>
+                          <a ng-click="role = exp.role;company = exp.company;save=true;">Edit</a>
+                          <a ng-click="removeExperience($index);">Remove</a>
+                      </div>
+
+                  </span>
+                  <span ng-show="save">
+                      <input name="company-name" ng-model="exp.company"
+                             placeholder="Company Name" />
+                      <dropdown-checklist options="EXPERIENCEROLE" selection="exp.role"></dropdown-checklist>
+                      <a ng-click="editExperience(exp.company);">Save</a>
+                      <a ng-click="exp.role = role;exp.company = company;save = false;">Cancel</a>
+                  </span>
+              </div>
+          </div>
+      </div>
+      </div>
+
+  <!-- Education Card-->
+  <div class="education-card">
+    <div class="card-header">
+      <div class="card-title">
+        Education
+      </div>
+    </div>
+    <div class="row">
+      <label for="my-profile-education" class="col-md-4 input-title">
+        Add School
+      </label>
+    </div>
+    <div class="row pull-middle">
+      <div class="col-md-8">
+          <input id="my-profile-education" name="school-name"
+                 uib-typeahead="(tag.tag_name) for tag in educationTags | filter:$viewValue | limitTo:9"
+                 typeahead-template-url="customTemplate.html"
+                 typeahead-on-select="onSelect($item, $model, $label)"
+                 ng-model="modifyEducation.school" placeholder="School Name" class="form-control" />
+      </div>
+      <div class="col-md-2">
+        <input name="grad-year" ng-model="modifyEducation.year" placeholder="Grad Year" class="form-control" />
+      </div>
+       <div class="col-md-1">
+        <button name="add-exp" ng-click="addEducation(modifyEducation.id)" class="btn low-btn">Add</button>
+      </div>
+    </div>
+      <div class="row">
+          <div ng-if="user.education.length > 0">
+              <div ng-repeat="edu in user.education" ng-init="save = false">
+                  <span ng-hide="save">
+                    <div class="profile-line">
+                      <span>{{edu.school}}</span>
+                      <span>&middot;</span>
+                      <span>{{edu.year}}</span>
+                      <a ng-click="year = edu.year;sch = edu.school;save=true;">Edit</a>
+                      <a ng-click="removeEducation($index);">Remove</a>
+                    </div>
+                  </span>
+                  <span ng-show="save">
+                      <input name="school-name" ng-model="edu.school"
+                             placeholder="School Name" />
+                      <input name="grad-year" ng-model="edu.year" placeholder="Grad Year" />
+                      <a ng-click="editEducation(edu.school);">Save</a>
+                      <a ng-click="edu.year = year;edu.school = sch;save = false;">Cancel</a>
+                  </span>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <!-- About Card -->
+  <div class="about-card">
+    <div class="card-header">
+      <div class="card-title">
+        About
+      </div>
+    </div>
+    <div class="row">
+      <label for="my-profile-what-i-do" class="col-md-6 input-title">
+        What I do
+      </label>
+      <label for="my-profile-achivements" class="col-md-6 input-title">
+        Achievements
+      </label>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <textarea id="my-profile-what-i-do" rows="5" name="what-i-do" ng-model="user.what_i_do" placeholder="Describe things you do for your company/organization" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <textarea id="my-profile-achivements" rows="5" name="achievements" ng-model="user.achievements" placeholder="Describe some of the impressive things you've done" class="form-control" />
+      </div>
+    </div>
+    <div class="row">
+      <label for="my-profile-skills" class="col-md-6 input-title">
+        Skills
+      </label>
+      <label for="my-profile-markets" class="col-md-6 input-title">
+        Markets
+      </label>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <input id="my-profile-skills" name="skills" ng-model="user.skills"
+                 uib-typeahead="(tag.tag_name) for tag in skillTags | filter:$viewValue | limitTo:9"
+                 typeahead-template-url="customTemplate.html"
+                 typeahead-on-select="onSelect($item, $model, $label)"
+                 placeholder="Enter Skills" class="form-control" />
+      </div>
+      <div class="col-md-6">
+          <input id="my-profile-markets" name="markets" ng-model="user.markets"
+                 uib-typeahead="(tag.tag_name) for tag in marketTags | filter:$viewValue | limitTo:9"
+                 typeahead-template-url="customTemplate.html"
+                 typeahead-on-select="onSelect($item, $model, $label)"
+                 placeholder="Enter Markets" class="form-control" />
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/ng-template" id="customTemplate.html">
+    <a>
+        <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+        <span>{{match.model.count}} Users</span>
+    </a>
+</script>
+<!--<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div class="card">
+      <h2>Profile {{$stateParams}}</h2>
+      <h2>Minimum Required Fields</h2>
+      Name: <input name="name" ng-model="user.name" /><br />
+      CompanyId: <input name="CompanyId" ng-model="user.company_id" type="number" /><br />
+      Email: <input name="email" ng-model="user.email" /><br />
+      Password: <input name="encrypted_password" type="password" ng-model="user.encrypted_password" />
+      <h2>Optional Fields</h2>
+      Title: <input name="title" ng-model="user.title" /><br />
+      Location: <input name="location" ng-model="user.location" /><br />
+      <input type="submit" ng-click="saveUser()" />
+    </div>
+  </div>
+<div ng-controller='ProfileController'>
+    <p>Avatar: <img ng-src="{{user.avatar_url}}" /></p>
+    <input type="file" file-model="fileToUpload" />
+    <button ng-click="uploadFile()">Upload</button>
+</div>
+-->

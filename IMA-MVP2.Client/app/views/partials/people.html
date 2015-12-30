@@ -1,0 +1,285 @@
+<div class="container people-page" ng-controller="PeopleController">
+	<div class="row">
+		<div class="col-md-12">
+    <div class="search-box">
+                <div class="form-group has-feedback has-feedback-left">
+                    <div class="glyphicon glyphicon-search form-control-feedback pull-left"></div>    
+                </div>
+			<ul class="tag-list">
+				<li ng-repeat="locationSearched in locationsSearched">
+					<div class="label label-default">
+						{{locationSearched}}
+						<span class="fa fa-times" ng-click="removeTag('location', locationSearched)"></span>
+					</div>
+				</li>
+				<li ng-repeat="skillSearched in skillsSearched">
+					<div class="label label-default">
+						{{skillSearched}}
+						<span class="fa fa-times" ng-click="removeTag('skill', skillSearched)"></span>
+					</div>
+				</li>
+				<li ng-repeat="roleSearched in rolesSearched">
+					<div class="label label-default">
+						{{roleSearched}}
+						<span class="fa fa-times" ng-click="removeTag('role', roleSearched)"></span>
+					</div>
+				</li>
+				<li ng-repeat="experienceSearched in experiencesSearched">
+					<div class="label label-default">
+						{{experienceSearched}}
+						<span class="fa fa-times" ng-click="removeTag('experience', experienceSearched)"></span>
+					</div>
+				</li>
+				<li ng-repeat="educationSearched in educationsSearched">
+					<div class="label label-default">
+						{{educationSearched}}
+						<span class="fa fa-times" ng-click="removeTag('education', educationSearched)"></span>
+					</div>
+				</li>
+				<li ng-repeat="marketSearched in marketsSearched">
+					<div class="label label-default">
+						{{marketSearched}}
+						<span class="fa fa-times" ng-click="removeTag('market', marketSearched)"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="nav nav-pills">
+			  <li class="dropdown">
+			    <a>
+			      Location <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			    	<li>
+			    		<input class="form-control" type="text" ng-model="locationSelected" placeholder="Location" uib-typeahead="location as location.tag_name for location in locationTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'location')">
+			    	</li>
+			      <li>Location 1</li>
+			      <li>Location 2</li>
+			    </ul>
+			  </li>
+			  <li class="dropdown">
+			    <a>
+			      Skill <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li>
+			      	<input class="form-control" type="text" ng-model="skillSelected" placeholder="Skills" uib-typeahead="skill as skill.tag_name for skill in skillTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'skill')">
+			      </li>
+			      <li>Skill 1</li>
+			      <li>Skill 2</li>
+			    </ul>
+			  </li>
+			  <li class="dropdown">
+			    <a>
+			      Role <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li>
+			      	<input class="form-control" type="text" ng-model="roleSelected" placeholder="Roles" uib-typeahead="role as role.tag_name for role in roleTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'role')">
+			      </li>
+			      <li>Role 1</li>
+			      <li>Role 2</li>
+			    </ul>
+			  </li>
+			  <li class="dropdown">
+			    <a>
+			      Experience <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li>
+			      	<input class="form-control" type="text" ng-model="experienceSelected" placeholder="Experiences" uib-typeahead="experience as experience.tag_name for experience in experienceTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'experience')">
+			      </li>
+			      <li>Experience 1</li>
+			      <li>Experience 2</li>
+			    </ul>
+			  </li>
+			  <li class="dropdown">
+			    <a>
+			      Education <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li>
+			      	<input class="form-control" type="text" ng-model="educationSelected" placeholder="Education" uib-typeahead="education as education.tag_name for education in educationTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'education')">
+			      </li>
+			      <li>Education 1</li>
+			      <li>Education 2</li>
+			    </ul>
+			  </li>
+			  <li class="dropdown">
+			    <a>
+			      Market <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li>
+			      	<input class="form-control" type="text" ng-model="marketSelected" placeholder="Markets" uib-typeahead="market as market.tag_name for market in marketTags | filter:{tag_name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" ng-keyup="selectTag()" typeahead-on-select="onSelect($item, $model, $label, 'market')">
+			      </li>
+			      <li>Market 1</li>
+			      <li>Market 2</li>
+			    </ul>
+			  </li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<!--<ul class="list-group">
+				<li class="list-group-item" ng-repeat="companyUser in companyUsersFiltered">
+					<h4 class="list-group-item-heading">{{companyUser.name}}</h4>
+					<p class="list-group-item-text">
+						<span class="fa fa-map-marker"></span>  {{companyUser.location}}
+						<span class="fa fa-briefcase"></span>
+						{{companyUser.skill}}
+						<span class="fa fa-smile-o"></span>
+						{{companyUser.role}}
+						<span class="fa fa-building-o"></span>
+						{{companyUser.experience}}
+						<span class="fa fa-graduation-cap"></span>
+						{{companyUser.education}}
+						<span class="fa fa-users"></span>
+						{{companyUser.market}}
+					</p>
+				</li>
+			</ul>-->
+ <ul>
+                <li ng-repeat="companyUser in companyUsersFiltered">
+                    <div class="people-page-list">
+                        <div class="people-page-list-header">
+                            <div class="image-section pull-left">
+                                <div class="big-image-circle" style="background-image: url('{{idea.owner_avatar_url}}'); background-color: #eef1f4; text-align: center;">
+                                    <i class="fa fa-user fa-3x" ng-hide="idea.owner_avatar_url"></i>
+                                    <span ng-if="idea.teamMemberCount > 1" class="badge">{{idea.teamMemberCount}}</span>
+                                </div>
+                            </div>
+                            <div class="employeeinfo">
+                                <div>
+                                    <span class="input-title">{{companyUser.name}}</span>
+                                </div>
+                                <div class="employeeinfo-desc">
+                                    <span class="employeeinfo-desc-text">{{companyUser.role}}</span>
+                                </div>
+                                <div class="employeeinfo-info-addon">
+                                    <a>
+                                        <span class="fa fa-facebook fa-1x"></span>
+                                    </a>
+                                    <a class="addon-width">
+                                        <span class="fa fa-twitter fa-1x"></span>
+                                    </a>
+                                    <a class="addon-width">
+                                        <span class="fa fa-linkedin fa-1x"></span>
+                                    </a>
+                                    <a class="addon-width">
+                                        <span class="fa fa-envelope fa-1x"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="employee-misc pull-right">
+                                <div class="pull-left">
+                                    <span class="employee-misc-link-01">Follow</span>
+                                    <span class="employee-misc-link-02">Contact</span>
+                                </div>
+                                <div class="pull-right">
+                                    <span ng-click="showdetail = !showdetail" class="fa fa-chevron-down fa-1x"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-init="showdetail = true" ng-show="showdetail">
+                            <div class="people-page-list-detail">
+                                <div ng-show="companyUser.location != null" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">LOCATION</span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <span class="people-page-list-detail-value">{{companyUser.location}}</span>
+                                    </div>
+                                </div>
+                                <div ng-show="companyUser.experience.length > 0" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">EXPERIENCE</span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <ul>
+                                            <li ng-repeat="comp in companyUser.experience">
+                                                <span class="people-page-list-detail-value">{{EXPERIENCEROLE[comp.role].name}} @ {{comp.company}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div ng-show="companyUser.education.length > 0" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">
+                                            EDUCATION
+                                        </span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <ul>
+                                            <li ng-repeat="comp in companyUser.education">
+                                                <span class="people-page-list-detail-value">{{comp.school}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div ng-show="companyUser.what_i_do != null" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">
+                                            ABOUT
+                                        </span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <span style="text-align: left; width: 500px; font-size: 13px; color: black; font-weight: bold;">{{companyUser.what_i_do}}</span>
+                                    </div>
+                                </div>
+                                <div ng-show="companyUser.achievements != null" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">
+                                            ACHIEVEMENT
+                                        </span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <span class="people-page-list-detail-value">{{companyUser.achievements}}</span>
+                                    </div>
+                                </div>
+
+                                <div ng-show="companyUser.skills != null" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">
+                                            SKILLS
+                                        </span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <span class="people-page-list-detail-value">{{companyUser.skills}}</span>
+                                    </div>
+                                </div>
+
+                                <div ng-show="companyUser.markets != null" class="people-page-list-detail-item">
+                                    <div class="people-page-list-detail-title">
+                                        <span class="people-page-list-detail-label">
+                                            MARKETS
+                                        </span>
+                                    </div>
+                                    <div class="people-page-list-detail-text">
+                                        <span class="people-page-list-detail-value">{{companyUser.markets}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <span>{{match.model.count}} Tags</span>
+  </a>
+</script>

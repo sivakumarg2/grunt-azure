@@ -1,0 +1,124 @@
+@import "../../partials/common/_variables.scss";
+
+.imethod-lite-module-form {
+
+	.idea-info {
+		background-color: $color-athens-gray;
+		margin: 20px 0 0 0;
+		padding: 0 27px;
+		max-width: 1100px;
+
+		.container-fluid {
+			.row {
+				display: flex;
+				align-items: center;
+
+				.col-md-4 {
+					.idea-image {
+						width: 335px;
+						height: 240px;
+						background-image: url('http://www.deloreanipsum.com/assets/img/delorean.png');
+						background-size: cover;
+						background-position: center center;
+					}
+
+				}
+				.col-md-8 {
+					margin-left: 10px;
+
+					span {
+						font-size: 19px;
+						display: inline-block;
+						margin-bottom: 13px;
+					}
+
+					p {
+					}
+				}
+			}
+		}
+
+	}
+
+	.imethod-lite-card {
+		overflow: hidden;
+		max-width: 1100px;
+		position: relative;
+		min-height: 450px;
+
+		.container-fluid {
+			.row {
+				width: 100%;
+
+				.col-md-12 {
+					position: relative;
+					width: 100%;
+
+					.left, .current, .right {
+						position: absolute;
+						width: 100%;
+					}
+
+					.current {
+						left: 15px;
+						@include transition(left 1s);
+					}
+
+					.left {
+						left: -999px;
+						@include transition(left 1s);
+						width: 90%;
+					}
+
+					.right {
+						left: 1100px;
+						@include transition(left 1s);
+					}
+				}
+			}
+		}
+
+		.container-fluid:nth-last-child(1) {
+			padding: 0;
+			position: absolute;
+			bottom: 27px;
+			width: 1041px;
+
+			.row {
+				margin: 0;
+
+				.col-md-12 {
+					padding: 0;
+
+					.slide-arrows {
+						display: flex;
+						align-items: center;
+
+						> div	{
+							height: 36px;
+							width: 36px;
+							border-radius: 50%;
+							border: 2px solid black;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+
+						> div:nth-child(1) {
+							margin-right: 15px;
+						}
+
+						> div:nth-child(2) {
+							margin-left: 15px;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	.imethod-lite-card:nth-child(2) {
+
+	}
+}

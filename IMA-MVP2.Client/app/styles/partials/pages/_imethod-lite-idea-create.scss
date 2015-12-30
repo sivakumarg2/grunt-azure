@@ -1,0 +1,304 @@
+﻿@import "../../partials/common/_variables.scss";
+
+.imethod-lite-idea-create {
+    .imethod-lite-card {
+
+        .container-fluid {
+            .row {
+                .col-md-4 {
+                    .dropdown-checklist {
+                        cursor: pointer;
+                    }
+
+                    .image-container {
+                        width: 335px;
+                        height: 335px;
+                        background-position:center;
+                        background-repeat:no-repeat;
+                        > span {
+                            color: $color-bombay;
+                        }
+
+                        > span:nth-child(1) {
+                            font-size: 50px;
+                        }
+                    }
+                    .gray-background {
+                        background-color: $color-athens-gray;
+                    }
+                }
+
+                .col-md-8 {
+                    .row {
+                        .col-md-6 {
+                            ul {
+                                .keyword-tags {
+                                    margin: 0 24px;
+                                }
+
+                                .keyword-tags:nth-child(1) {
+                                    margin-left: 19px;
+                                }
+                            }
+                        }
+                    }
+
+                    .attachment-container {
+                        margin-top: 25px;
+
+                        > label {
+                            color: $color-amaranth;
+
+                            span {
+                                margin-right: 8px;
+                            }
+                        }
+
+                        > input {
+                            display: none;
+                        }
+
+                        ul {
+                            padding-top: 0;
+                            margin-left: 5px;
+
+                            li {
+                                font-style: italic;
+
+                                a {
+                                    color: black;
+                                }
+
+                                > span {
+                                    margin-left: 5px;
+                                    color: $color-amaranth;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .imethod-lite-card:nth-child(1) {
+        margin-top: 0;
+    }
+
+    .extra-margin:nth-child(1) {
+        margin-top: 90px;
+    }
+
+    .idea-labels {
+        .container-fluid {
+          font-size: 13px;
+          margin: 0 5px 0 5px;
+            .row {
+                .col-md-4 {
+                    display: block;
+                    position: relative;
+                    height: 40px;
+
+                    .dropdown-checklist {
+                        position: absolute;
+                        width: 82%;
+                    }
+
+                    .zindex {
+                        z-index: 99;
+                    }
+
+                    > label {
+                        margin-top: 21px;
+
+                        &::before {
+                            background-color: $color-athens-gray;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .build-team {
+        .list-view {
+
+            header, .entry {
+                > span {
+                    // team members
+                    &:nth-child(1) {
+                      flex-basis: 30%;
+                    }
+
+                    // contact
+                    &:nth-child(2) {
+                      flex-basis: 23%;
+                    }
+
+                    // local time
+                    &:nth-child(3) {
+                      flex-basis: 17%;
+                    }
+
+                    // last active
+                    &:nth-child(4) {
+                      flex-basis: 17%;
+                    }
+
+                    // role
+                    &:nth-child(5) {
+                      flex-basis: 10%;
+                    }
+                }
+            }
+
+            .entry {
+
+                > span {
+                    .big-image-circle {
+                        margin-right: 25px;
+
+                        .fa-user {
+                            font-size: 34px;
+                        }
+                    }
+
+                    > .fa-star {
+                        margin-left: 7px;
+                    }
+                }
+
+                > span:nth-child(2) {
+                    color: $color-amaranth;
+                }
+
+                > span:nth-child(5) {
+                    label{
+                        a:nth-child(1){
+                            text-decoration: none;
+                            color: $color-black;
+                        }
+                        span{
+                            color: $color-amaranth;
+                        }
+                    }
+                }
+            }
+
+            .entry:nth-last-child(2) {
+                 span, .fa-user-plus {
+                    margin-right: 10px;
+                    color: $color-amaranth;
+                }
+            }
+        }
+    }
+
+    .save-and-continue {
+        color: $color-amaranth;
+
+        div {
+            border-color: $color-amaranth;
+        }
+    }
+}
+
+.idea-image-upload{
+	width: 55px !important; // Overwriting width property
+	height: 45px;
+	cursor: pointer;
+	top: 145px;
+	left: 155px;
+	position: absolute;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.idea-image-upload-change{
+    label {
+        cursor: pointer;
+        color: $color-bombay;
+        font-weight: 300;
+    }
+
+	input[type="file"]{
+		opacity: 0;
+	}
+}
+
+.unsaved-member
+{
+    color:$color-bombay
+}
+
+.user-send-mail{
+    width:400px;
+    height:300px;
+    position:absolute;
+    border: 1px solid $color-mystic;
+    border-top: 5px solid $color-amaranth;
+    background-color:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+	z-index:100;
+	margin-left:-15px;
+    box-shadow: 5px 5px 3px 2px rgba(0, 0, 0, 0.1); //rgba used for transparency
+    .close{
+        margin:10px 10px 0 0;
+    }
+
+    div{
+        margin:30px 50px 50px 50px;
+    }
+
+    h4{
+        text-align: center;
+        font-weight:bold;
+    }
+
+    li:nth-child(2){
+        margin-top:30px;
+        text{
+            width:450px;
+            height:150px;
+        }
+    }
+
+    li:nth-child(3){
+        margin-top:40px;
+        text-align: center;
+    }
+
+    .btn{
+        border:2px solid $color-black;
+        width:150px;
+        font-weight:bold;
+        background-color:white;
+    }
+}
+.add-team-member
+{
+    color:$color-amaranth;
+}
+
+.mail-committee{
+    border:2px solid $color-black;
+    width:150px;
+    font-weight:bold;
+    background-color:white;
+}
+
+.field-required{
+    border:1px solid $color-amaranth !important;
+}
+
+.select-boolean{
+    border:none;
+    color:$color-black;
+	.ans-icon
+    {
+	    color:$color-amaranth;
+        padding-left:5px;
+    }
+}

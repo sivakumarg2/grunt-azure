@@ -1,0 +1,62 @@
+﻿<div class="idea-item-modal" >
+    <div class="modal-header">
+        <label class="pull-middle">Idea Deatils</label>
+        <span ng-click="cancel()" class="glyphicon glyphicon-remove pull-right"></span>
+    </div>            
+    <div class="modal-body idea-item">
+        <br />
+        <div class="idea-item-modal-content">
+            <div class="idea-item-modal-left-section pull-left" >
+                <div ng-init="editIdeaName = false;editIdeaDesc = false;editedName = ideaItem.name;editedDescription = ideaItem.description;">
+                    <div ng-show="!editIdeaName" ng-click="editedName = ideaItem.name;editIdeaName = true;editIdeaDesc= false;">
+                        <label class="input-title" ng-bind="ideaItem.name"></label>
+                    </div>
+                    <div ng-show="editIdeaName">
+                        <input type="text" ng-model="ideaItem.name" />
+                        <br />
+                        <a ng-click="editedName = ideaItem.name;editIdeaName = false;saveIdea(ideaItem)"><span>Save</span></a>
+                        <a ng-click="ideaItem.name = editedName;editIdeaName = false;"><span>Cancel</span></a>
+                    </div>
+                    <div ng-show="!editIdeaDesc" ng-click="editedDescription = ideaItem.name;editIdeaDesc = true;editIdeaName = false;">
+                        <label class="input-title" ng-bind="ideaItem.description"></label>
+                    </div>
+                    <div ng-show="editIdeaDesc">
+                        <textarea ng-model="ideaItem.description" class="form-control medium-text-input"></textarea>
+                        <br />
+                        <a ng-click="editedDescription = ideaItem.name;editIdeaDesc = false;saveIdea(ideaItem)"><span>Save</span></a>
+                        <a ng-click="ideaItem.name = editedDescription;editIdeaDesc = false;"><span>Cancel</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="idea-item-modal-right-section pull-left">
+                <label class="input-title">Add</label>
+                <ul class="idea-item-modal-seperator">
+                    <li>
+                        <button ng-click="deleteIdea(ideaItem)" type="button" class="btn ">
+                            Delete
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn ">
+                            Team Members
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn ">
+                            Idea labels
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn ">
+                            Files / docs
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn " type="button" ng-click="saveIdea(ideaItem)">OK</button>
+        <button class="btn " type="button" ng-click="cancel()">Launch iMethod Lite</button>
+    </div>
+</div>

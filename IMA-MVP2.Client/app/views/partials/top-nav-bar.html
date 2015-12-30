@@ -1,0 +1,77 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" target="_blank" href="http://www.utc.com/Pages/Home.aspx"><img src="images/utc-logo.png" class="company-logo" /></a>
+        </div>
+        <span ng-hide="currentUserId == undefined || currentUserId == ''">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="navbar-left">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <button type="button" class="btn btn-success" ui-sref="imethodLite">
+                                <span class="fa fa-plus pull-left"></span>
+                                New Idea
+                            </button>
+                        </li>
+                        <li>
+                            <a ui-sref="myIdeas">
+                                <h4>My Ideas</h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a ui-sref="companyIdeas">
+                                <h4>Company</h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a ui-sref="people">
+                                <h4>People</h4>
+                            </a>
+                        </li>
+                        <li uib-popover="Like a Swiss Army Knife. Only easier to open. Coming soon to an app near you." popover-trigger="mouseenter" popover-placement="bottom">
+                            <a>
+                                <h4>Tools</h4>
+                            </a>
+                        </li>
+                        <li uib-popover="More iMethod resources? I know, We're excited too. We'll have this ready soon!" popover-trigger="mouseenter" popover-placement="bottom">
+                            <a><h4>iMethod</h4></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li click-outside="accountDropdown=false" uib-popover="If this placeholder had a face, it'd be a sad face. Give it a happy face." popover-trigger="mouseenter" popover-placement="left" ng-hide="currentUser.avatar_url">
+                            <div class="medium-image-circle" style="background-image: url('{{currentUser.avatar_url}}');">
+                                <span class="fa fa-user" ng-hide="currentUser.avatar_url"></span>
+                            </div>
+                            <span class="fa fa-chevron-down" ng-click="accountDropdown = !accountDropdown"></span>
+                            <ul ng-show="accountDropdown">
+                                <li><a ui-sref="profile({id:currentUserId})" ng-click="accountDropdown = false">Profile</a></li>
+                                <li><a ng-click="logoutUser(); accountDropdown=false">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li click-outside="accountDropdown=false" ng-show="currentUser.avatar_url">
+                            <div class="medium-image-circle" style="background-image: url('{{currentUser.avatar_url}}');"></div>
+                            <span class="fa fa-chevron-down" ng-click="accountDropdown = !accountDropdown"></span>
+                            <ul ng-show="accountDropdown">
+                                <li><a ui-sref="profile({id:currentUserId})" ng-click="accountDropdown = false">Profile</a></li>
+                                <li><a ng-click="logoutUser(); accountDropdown=false">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </span>
+        <div>
+            <button ui-sref="login" class="pull-right top-btn-signup" ng-show="currentUserId == undefined || currentUserId == ''">Sign In</button>
+        </div>
+
+    </div>
+</nav>

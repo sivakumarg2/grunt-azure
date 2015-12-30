@@ -1,0 +1,86 @@
+@import '../partials/common/_variables.scss';
+@import "../bourbon/_bourbon.scss";
+
+.card {
+  background-color: blue;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  margin-bottom: 40px;
+
+  .card-header {
+    display: flex;
+    flex-flow: row;
+
+    h2, h4 {
+      margin: 0;
+    }
+
+    h4 {
+      margin-top: 20px;
+    }
+
+    .card-title {
+        flex: 1 0 auto;
+        border-bottom: 1px solid $color-gallery;
+        padding-bottom: 20px;
+        padding-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    .card-collapse {
+        flex: 0 1 auto;
+        font-weight: bold;
+        padding-top: 9px;
+        display: inherit;
+
+        .fa {
+            margin: -1px 10px 0 0;
+            font-size: 22px;
+        }
+    }
+
+    .card-collapse-clicked {
+        .collapse-text {
+            display: none;
+        }
+    }
+
+    .card-collapse-clicked::after {
+        content: "Expand"
+    }
+
+  }
+
+  .list-view {
+    display: block;
+    margin: 0px -40px;
+    max-height: 768px;
+    opacity: 1;
+    @include transition(max-height .5s, opacity .5s);
+
+    header, .entry {
+      padding: 20px 30px;
+      border-bottom: 1px solid $color-gallery;
+      @include transition(background-color .2s);
+
+      span {
+        padding: 10px;
+      }
+    }
+
+    header {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 0 30px 20px 30px;
+    }
+
+    &.collapse {
+    // display: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    }
+  }
+
+
+}

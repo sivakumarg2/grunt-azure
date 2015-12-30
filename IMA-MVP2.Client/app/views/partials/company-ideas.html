@@ -1,0 +1,133 @@
+<div class="idea-index" ng-controller="IdeaController" ng-init="showList = true">
+    <div class="imethod-lite-card">
+        <div class="card-header">
+            <div class="card-title">
+                <span>Company ideas</span> <span class="pull-right"><span ng-click="showList = true" class="fa fa-reorder"></span><span ng-click="showList = false" class="fa fa-th-large toggle-space"></span></span>
+            </div>
+        </div>
+        <div ng-show="showList" class="list-view">
+                <div class="entry" ng-repeat="idea in companyIdeas">
+                    <span>
+                        <ul class="ul-vote">
+                            <li><i class="fa fa-sort-asc fa-1x"></i></li>
+                            <li>{{idea.voteCount}}</li>
+                        </ul>
+                    </span>
+                    <span>
+                        <div class="image-container gray-background" uib-popover-html="idea.htmlImageContent" popover-trigger="mouseenter" popover-placement="top" style="background-image: url('{{idea.background_image}}');height:75px;width:80px;">
+                        </div>
+                    </span>
+                    <span ng-click="getIdeaDetails(idea.idea_id, $index)">
+                        <ul>
+                            <li>
+                                {{idea.name}}
+                            </li>
+                            <li>
+                                {{idea.description}}
+                            </li>
+                            <li>
+                                <ul>
+                                    <li ng-repeat="ideaTag in idea.Ideatags" class="keyword-tags">
+                                        <span class="tag-list">{{ideaTag.tag_name}}&nbsp;-</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </span>
+                    <span>
+                        <div class="big-image-circle" style="background-image: url('{{idea.owner_avatar_url}}');">
+                            <i class="fa fa-user fa-2x" ng-hide="idea.owner_avatar_url"></i>
+                        </div>
+                    </span>
+                    <span>                        
+                        <span class="comment-count"><i class="fa fa-comment-o fa-1x"></i>  {{idea.commentCount}}</span>
+                    </span>
+                </div>
+                <!--<header>
+            <span>Votes</span>
+            <span ng-click="sortIdeas('name')">Name</span>
+            <span>Challenge</span>
+            <span ng-click="sortIdeas('idea_status_id')">Idea Status</span>
+            <span>Team</span>
+            <span ng-click="sortIdeas('updated_at')">Modified</span>
+            <span>Progress</span>
+        </header>
+        <div class="entry" ng-repeat="idea in companyIdeas | orderBy : sortModel.columnName">
+            <span>{{idea.votes}}</span>
+            <span><button class="btn-link" ng-click="showIdea(idea.idea_id, idea.idea_owner_id)">{{idea.name}}</button></span>
+            <span>
+                <ul>
+                    <li ng-repeat="challenge_id in idea.challenge_ids">
+                        {{getChallengeName(challenge_id)}}
+                    </li>
+                </ul>
+            </span>
+            <span ng-if="idea.idea_status_id == STATUS.DRAFT">DRAFT</span>
+            <span ng-if="idea.idea_status_id == STATUS.PUBLISHED">PUBLISHED</span>
+            <span>
+                <div class="big-image-circle" style="background-image: url('{{idea.owner_avatar_url}}'); background-color: #eef1f4; text-align: center;">
+                    <i class="fa fa-user fa-3x" ng-hide="idea.owner_avatar_url"></i>
+                    <span ng-if="idea.teamMemberCount > 1" class="badge">{{idea.teamMemberCount}}</span>
+                </div>
+            </span>
+            <span>{{idea.updated_at}}</span>
+            <span>
+                <div class="lite-progress-bar">
+                    <div ng-repeat="isModuleComplete in idea.progressArray track by $index" ng-class="{'complete': isModuleComplete}"></div>
+                </div>
+            </span>
+            <span class="fa fa-times" ng-click="deleteCompanyIdea(idea)" ng-show="idea.idea_owner_id == currentUserId">
+            </span>
+        </div>-->
+            </div>
+        <div ng-show="!showList" class="grid-view">
+            <div class="row">
+                <div class="entry" ng-repeat="idea in companyIdeas" ng-init="show_social_list=false">
+                    <div class="col-md-3" ng-mousemove="show_social_list=true" ng-mouseleave="show_social_list=false">
+                        <ul>
+                            <li><div class="image-container gray-background" style="background-image:url({{idea.background_image}});"></li>
+                            <li>
+                                <span ng-click="showIdea(idea.idea_id, idea.idea_owner_id)">{{idea.name}}</span>
+                            </li>
+                            <li>
+                                <span>{{idea.description}}</span>
+                            </li>
+                            <li><span></span></li>
+                            <li class="item-footer">
+                                <span>
+                                    <ul class="li-vote">
+                                        <li><i class="fa fa-sort-asc fa-1x"></i></li>
+                                        <li>{{idea.voteCount}}</li>
+                                    </ul>
+                                </span>
+                                <span>
+                                    <div class="mini-image-circle" style="background-image: url('{{idea.owner_avatar_url}}'); background-color: #eef1f4; text-align: center;">
+                                        <i class="fa fa-user fa-3x" ng-hide="idea.owner_avatar_url"></i>
+                                    </div>
+                                </span>
+                                <span ng-show="show_social_list" uib-dropdown uib-dropdown-toggle=" " class=" fa fa-plus-circle fa-1x pull-right">
+                                    <ul class="uib-dropdown-menu dropdown-menu">
+                                        <li>
+                                            <span ng-click="openTwitter(idea.idea_id)" class="fa fa-twitter"></span>
+                                        </li>
+                                        <li>
+                                            <span ng-click="openFacebook(idea.idea_id)" class="fa fa-facebook"></span>
+                                        </li>
+                                        <li>
+                                            <span ng-click="openLinkedIn(idea.idea_id)" class="fa fa-linkedin"></span>
+                                        </li>
+                                        <li>
+                                            <span ng-click="openMail(idea.idea_id)" class="fa fa-envelope"></span>
+                                        </li>
+                                    </ul>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<modal title="Idea Details" visible="showModal" class="idea-modal">
+            <ng-include src="'/views/partials/idea-details-modal.html'"></ng-include>
+        </modal>
+</div>

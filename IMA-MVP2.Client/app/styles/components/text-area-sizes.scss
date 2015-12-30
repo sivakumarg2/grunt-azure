@@ -1,0 +1,11 @@
+// Sizes for textarea inputs.
+// Note: The default size for a single line text input is adjusted in _elements.scss, under form-control.
+
+.medium-text-input {
+    height: 122px !important;
+    padding: 16px 20px !important;
+}
+
+.large-text-input {
+    height: 173px !important;
+}

@@ -1,0 +1,328 @@
+// New design of the card
+
+@import '../partials/common/_variables.scss';
+@import "../bourbon/_bourbon.scss";
+
+.imethod-lite-card {
+	background-color: white;
+  padding: 36px 27px;
+  margin: 20px 0;
+  box-shadow: none;
+  border-radius: 5px;
+  border-color: $color-mystic;
+  @include transition(max-height .25s);
+  max-width: 1250px;
+
+  .card-header {
+  	margin: 0px -27px 0px -15px;
+  	padding: 0 27px;
+  	height: 50px;
+  	border-bottom: 1px solid $color-mystic;
+    text-align:left;
+    font-weight: bold;
+
+  	.card-title {
+  		margin: 0;
+  		font-size: 19px;
+  		line-height: 15px;
+      width:100%;
+  		> span {
+  			font-size: 19px;
+        margin-right: 5px;
+        float:left;
+  		}
+
+      > span:nth-child(1) {
+        font-weight: bold;
+      }
+
+      > span:nth-child(2) {
+        color:$color-black;
+		margin-left: 5px;
+		letter-spacing:1px;
+      }
+
+       > span:nth-child(3) {
+        color:$color-gray60;
+        font-size:13px;
+        font-style:italic;
+		 letter-spacing:0.5px;
+		padding-top: 1.5px;
+		margin-left: 4px;
+      }
+
+      >span.card-status{
+        float:right;
+        margin-right:5px;
+		padding: 0 45px;
+      }
+  	}
+  }
+
+  ul{
+    padding-top: 10px;
+    .li-view
+    {
+        padding-left:5px;
+    }
+  }
+
+  .view-title {
+    margin: 0px -27px;
+    padding: 0 27px;
+    height: 50px;
+  }
+
+  .step-title{
+    color:#333;
+    margin:50px 0;
+  }
+
+  .step-title span{
+    color:rgb(228,56,92);
+  }
+
+  .container-fluid {
+  	padding:0;
+
+  	.row {
+        .step-title{
+          font-size: 17px;
+          span{
+            font-size: 17px;
+           }
+        }
+  		.col-md-4 {
+		div:nth-child(1){
+          font-size: 13px;
+          }
+          label{
+            font-size: 13px;
+          }
+  			.image-container {
+
+  			}
+  		}
+
+  		.col-md-8 {
+        max-width: 665px;
+  		}
+  	}
+  }
+
+  .list-view {
+    display: block;
+	margin-left:20px;
+
+    header, .entry {
+      border-bottom: 1px solid $color-athens-gray;
+      display: flex;
+    }
+
+    header {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 46px 0 13px 0;
+
+    }
+
+    .entry {
+      padding: 16px 0;
+      span{
+        font-size: 13px;
+      }
+
+      > span {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+}
+
+.collapse-imethod-lite-card {
+  overflow: hidden;
+  max-height: 85px;
+  @include transition(max-height .25s);
+}
+
+// Version 3 New Colors for Card Headers
+
+.idea-overview-card-colors{
+  .card-title, .card-status{
+    span{
+      color: $color-amaranth;
+    }
+    span:nth-child(2){
+      color: $color-black;
+    }
+  }
+
+  .save-row {
+    .medium-circle-button {
+      border-color: $color-amaranth;
+
+      span {
+        color: $color-amaranth;
+      }
+    }
+  }
+}
+
+.insight-card-colors{
+  .card-title, .card-status{
+    span{
+    color: $color-picton-blue;
+    }
+  }
+
+  .save-row {
+    .medium-circle-button {
+      border-color: $color-picton-blue;
+
+      span {
+        color: $color-picton-blue;
+      }
+    }
+  }
+}
+
+.problem-card-colors{
+  .card-title, .card-status{
+    span{
+    color: $color-camelot;
+    }
+  }
+
+  .save-row {
+    .medium-circle-button {
+      border-color: $color-camelot;
+
+      span {
+        color: $color-camelot;
+      }
+    }
+  }
+}
+
+.solution-card-colors{
+  .card-title, .card-status{
+    span{
+    color: $color-pelorous;
+    }
+  }
+
+  .save-row {
+    .medium-circle-button {
+      border-color: $color-pelorous;
+
+      span {
+        color: $color-pelorous;
+      }
+    }
+  }
+}
+
+.business-model-card-colors{
+  .card-title, .card-status{
+    span{
+    color: $color-blue-bayoux ;
+    }
+  }
+
+  .save-row {
+    .medium-circle-button {
+      border-color: $color-blue-bayoux;
+
+      span {
+        color: $color-blue-bayoux;
+      }
+    }
+  }
+}
+
+.teammember{
+	background-color:$color-athens-gray;
+	border-radius: 6px;
+	margin-bottom:10px;
+	.team-header{
+		font-weight:bold;
+		padding:10px 0 0 10px;
+	}
+	.mini-image-circle{
+		background-color: $color-profile-gray;
+	}
+	.entry {
+		padding: 16px 0 5px 0px;
+		 > span {	
+			font-size: 13px;
+			display:inline-block;		
+			align-items: center;
+			margin-left:10px;
+			&:nth-child(1)
+			{
+				min-width:20px;
+				flex-basis: 10%;	
+				vertical-align:middle;			
+			}
+			&:nth-child(2)
+			{
+				min-width:100px;
+				flex-basis: 60%;
+				vertical-align:middle;
+			}
+			&:nth-child(3)
+			{
+				min-width:80px;
+				flex-basis: 20%;
+				vertical-align:middle;
+				.dropdown-menu
+				{
+					min-width:140px;
+					li span
+					{
+						color:$color-amaranth;
+					}
+				}
+			}
+			&:nth-child(4)
+			{
+				flex-basis: 10%;
+				vertical-align:middle;	
+			}
+      }
+	}
+}
+
+ .labels{
+	background-color:$color-athens-gray;
+	border-radius: 6px;
+	margin:10px 0 10px 0;
+	padding: 0 5px 10px 0;
+	.labels-header{
+		font-weight:bold;
+		padding:10px 0 0 10px;
+	}
+}
+ 
+ .attachment{
+	background-color:$color-athens-gray;
+	border-radius: 6px;
+	margin-bottom:10px;
+	.attachment-header{
+		font-weight:bold;
+		padding:10px 0 5px 10px;
+	}
+	.attachment-body{
+		input{
+			display:none;
+		}
+		label{
+			padding-left:10px;
+		}
+		ul{
+			padding:0 10px 10px 10px;
+		}
+	}
+}

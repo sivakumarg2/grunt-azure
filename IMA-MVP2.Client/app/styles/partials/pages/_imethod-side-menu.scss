@@ -1,0 +1,80 @@
+// New sidebar design
+
+@import "../../partials/common/_variables.scss";
+@import "../../bourbon/_bourbon.scss";
+
+.imethod-side-menu {
+	margin: 0;
+
+	ul {
+		li {
+			font-size: 16px;
+			margin: 0;
+			display: flex;
+			align-items: center;
+
+			> .active-bar {
+				display: none;
+				height: 15px;
+				width: 3px;
+				background-color: $color-amaranth;
+				margin-right: 10px;
+			}
+		}
+
+		li.active {
+			
+
+			> .active-bar {
+				background: $color-amaranth;				
+			}
+		}
+	}
+}
+
+.sticky {
+	//position: fixed;
+	top: 84px;
+}
+.level-1{
+  width: 320px; height: 55px;
+  background: $color-mystic-2;
+  margin: 0;
+  > div{
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.level-2{
+  padding: 25px;
+  width: 320px;
+  background: white;
+  > div:nth-child(1){
+    width: 40px;
+    span{
+      color: $color-amaranth;
+    }
+  }
+  div{
+    display: table-cell;
+  }
+}
+
+.sidebar-show {
+  @include transition(all .25s linear);
+  position:relative;
+  left: 0;
+  opacity: 1;
+}
+
+.sidebar-show.ng-hide{
+  opacity:0;
+  position: absolute;
+  left: -320px;
+}
+
+.completed{
+  background: $color-athens-gray;
+}
