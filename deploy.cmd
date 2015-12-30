@@ -53,11 +53,11 @@ IF NOT DEFINED GRUNT_CMD (
   echo Installing Grunt
   call npm --registry "http://registry.npmjs.org/" install grunt-cli
   IF !ERRORLEVEL! NEQ 0 goto error
-
-  :: Locally just running "grunt" would also work
-  SET GRUNT_CMD = node "%appdata%\npm\node_modules\grunt-cli\bin\grunt"
 )
 
+:: Locally just running "grunt" would also work
+SET GRUNT_CMD = node "%appdata%\npm\node_modules\grunt-cli\bin\grunt"
+  
 goto Deployment
 
 :: Utility Functions
