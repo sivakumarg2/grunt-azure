@@ -102,11 +102,12 @@ echo Handling node.js grunt deployment.
 :: 1. Select node version
 call :SelectNodeVersion
 
-echo Node version is selected, %DEPLOYMENT_TARGET%
+echo Deployment Target: %DEPLOYMENT_TARGET%
+echo Deployment Source: %DEPLOYMENT_TARGET%
 :: 2. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   echo package.js is exists
-  pushd "%DEPLOYMENT_TARGET%"
+  pushd "%DEPLOYMENT_SOURCE%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
