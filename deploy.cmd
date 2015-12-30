@@ -47,6 +47,17 @@ IF NOT DEFINED KUDU_SYNC_CMD (
   :: Locally just running "kuduSync" would also work
   SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
 )
+
+IF NOT DEFINED GRUNT_CMD (
+  :: INSTALL GRUNT
+  echo Installing Grunt
+  call npm --registry "http://registry.npmjs.org/" install grunt-cli
+  IF !ERRORLEVEL! NEQ 0 goto error
+
+  :: Locally just running "grunt" would also work
+  SET GRUNT_CMD = node "%appdata%\npm\node_modules\grunt-cli\bin\grunt"
+)
+
 goto Deployment
 
 :: Utility Functions
@@ -93,7 +104,7 @@ call :SelectNodeVersion
 
 echo Node version is selected, %DEPLOYMENT_TARGET%
 :: 2. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\repository\package.json" (
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   echo package.js is exists
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
