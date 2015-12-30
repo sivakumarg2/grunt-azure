@@ -93,13 +93,13 @@ call :SelectNodeVersion
 
 echo Node version is selected, %DEPLOYMENT_TARGET%
 :: 2. Install npm packages
-
+IF EXIST "%DEPLOYMENT_TARGET%\repository\package.json" (
   echo package.js is exists
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
-
+)
 
 echo Install bower packages
 :: 3. Install bower packages
