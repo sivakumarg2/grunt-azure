@@ -124,13 +124,13 @@ popd
 echo :: 4. KuduSync - path changed - %IN_PLACE_DEPLOYMENT%
 :: 4. KuduSync
 ::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_SOURCE%/dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_SOURCE%\dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 ::)
 
 echo :: 5. Install npm packages
 :: 5. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   echo :: 5. package.json exists
   pushd %DEPLOYMENT_TARGET%
   call !NPM_CMD! install --production
