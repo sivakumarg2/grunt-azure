@@ -91,6 +91,7 @@ echo Handling node.js grunt deployment.
 :: 1. Select node version
 call :SelectNodeVersion
 
+echo Node version is selected
 :: 2. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
@@ -99,6 +100,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
+echo Install bower packages
 :: 3. Install bower packages
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
@@ -107,14 +109,16 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   popd
 )
 
+echo Grunt serve
 :: 4. Grunt build
 IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd grunt devBuild
+  call :ExecuteCmd grunt serve -f
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
+echo Post deployment stub
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
