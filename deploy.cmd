@@ -103,33 +103,38 @@ echo Handling node.js grunt deployment.
 call :SelectNodeVersion
 
 echo Deployment Target: %DEPLOYMENT_TARGET%
-echo Deployment Source: %DEPLOYMENT_TARGET%
+echo Deployment Source: %DEPLOYMENT_SOURCE%
+
 :: 2. Install npm packages
-IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
-  echo package.js is exists
-  pushd "%DEPLOYMENT_SOURCE%"
-  call :ExecuteCmd !NPM_CMD! install --production
+echo Installing npm dev dependendencies
+if EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd %DEPLOYMENT_SOURCE%
+  echo Cleaning NPM cache.
+  call !NPM_CMD! cache clean
+  call !NPM_CMD! install --development
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
-echo Install bower packages
-:: 3. Install bower packages
-IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd bower install
+:: 3. Run grunt prod task
+pushd %DEPLOYMENT_SOURCE%
+call !GRUNT_CMD! prod
+popd
+
+:: 4. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_DIST%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
+
+:: 5. Install npm packages
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd %DEPLOYMENT_TARGET%
+  call !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
-echo Grunt serve
-:: 4. Grunt build
-IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd grunt serve -f
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
 
 echo Post deployment stub
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
