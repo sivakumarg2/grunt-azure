@@ -49,7 +49,7 @@ IF NOT DEFINED KUDU_SYNC_CMD (
 )
 
 IF DEFINED GRUNT_CMD (
-echo "Grunt Defined"
+echo Grunt Defined
 }
 
 IF NOT DEFINED GRUNT_CMD (
