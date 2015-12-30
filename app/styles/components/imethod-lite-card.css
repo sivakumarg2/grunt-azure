@@ -1,0 +1,95 @@
+﻿.imethod-lite-card {
+  background-color: white;
+  padding: 36px 27px;
+  margin: 40px 0;
+  box-shadow: none;
+  border-radius: 5px;
+  border-color: #e5eaee;
+  -webkit-transition: max-height 0.25s;
+  -moz-transition: max-height 0.25s;
+  transition: max-height 0.25s;
+  max-width: 1095px; }
+  .imethod-lite-card .card-header {
+    margin: 0px -27px;
+    padding: 0 27px;
+    height: 50px;
+    border-bottom: 1px solid #e5eaee;
+    text-align: left;
+    font-weight: bold; }
+    .imethod-lite-card .card-header .card-title {
+      margin: 0;
+      font-size: 19px;
+      line-height: 15px;
+      width: 100%; }
+      .imethod-lite-card .card-header .card-title > span {
+        font-size: 19px;
+        margin-right: 5px;
+        float: left; }
+      .imethod-lite-card .card-header .card-title > span.card-status {
+        float: right;
+        margin-right: 5px; }
+  .imethod-lite-card ul {
+    padding-top: 10px; }
+  .imethod-lite-card .view-title {
+    margin: 0px -27px;
+    padding: 0 27px;
+    height: 50px; }
+  .imethod-lite-card .step-title {
+    color: #333;
+    margin: 30px 0; }
+  .imethod-lite-card .step-title span {
+    color: #e4385c; }
+  .imethod-lite-card .container-fluid {
+    padding: 0; }
+    .imethod-lite-card .container-fluid .row .step-title {
+      font-weight: bold;
+      font-size: 17px; }
+      .imethod-lite-card .container-fluid .row .step-title span {
+        font-size: 17px; }
+    .imethod-lite-card .container-fluid .row .col-md-4 div:nth-child(1) {
+      font-size: 13px; }
+    .imethod-lite-card .container-fluid .row .col-md-4 label {
+      font-size: 13px; }
+    .imethod-lite-card .container-fluid .row .col-md-8 {
+      max-width: 665px; }
+  .imethod-lite-card .list-view {
+    display: block; }
+    .imethod-lite-card .list-view header, .imethod-lite-card .list-view .entry {
+      border-bottom: 1px solid #eef1f4;
+      display: flex; }
+    .imethod-lite-card .list-view header {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 46px 0 13px 0; }
+    .imethod-lite-card .list-view .entry {
+      padding: 16px 0; }
+      .imethod-lite-card .list-view .entry span {
+        font-size: 13px; }
+      .imethod-lite-card .list-view .entry > span {
+        display: flex;
+        align-items: center; }
+
+.collapse-imethod-lite-card {
+  overflow: hidden;
+  max-height: 85px;
+  -webkit-transition: max-height 0.25s;
+  -moz-transition: max-height 0.25s;
+  transition: max-height 0.25s; }
+
+.idea-overview-card-colors .card-title span, .idea-overview-card-colors .card-status span {
+  color: #e4385c; }
+
+.idea-overview-card-colors .card-title span:nth-child(2), .idea-overview-card-colors .card-status span:nth-child(2) {
+  color: #000000; }
+
+.insight-card-colors .card-title span, .insight-card-colors .card-status span {
+  color: #39a0ed; }
+
+.problem-card-colors .card-title span, .problem-card-colors .card-status span {
+  color: #8f2d56; }
+
+.solution-card-colors .card-title span, .solution-card-colors .card-status span {
+  color: #4ac1c4; }
+
+.business-model-card-colors .card-title span, .business-model-card-colors .card-status span {
+  color: #4c6085; }

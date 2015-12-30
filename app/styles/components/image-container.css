@@ -1,0 +1,8 @@
+﻿.image-container {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center; }
+  @media (max-width: 768px) {
+    .image-container {
+      display: block; } }
