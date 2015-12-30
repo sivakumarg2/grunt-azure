@@ -48,10 +48,6 @@ IF NOT DEFINED KUDU_SYNC_CMD (
   SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
 )
 
-IF DEFINED GRUNT_CMD (
-echo Grunt Defined
-}
-
 IF NOT DEFINED GRUNT_CMD (
   :: INSTALL GRUNT
   echo Installing Grunt
