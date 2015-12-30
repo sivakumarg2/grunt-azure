@@ -1,0 +1,51 @@
+<nav ng-class="{'navbar': true, 'navbar-default': true, 'page-meta': true, 'sticky': willItStick}" sticky-element>
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" ng-controller="ImethodMetaController">
+            <div class="navbar-left">
+                <ol class="breadcrumb">
+                  <li><span class="fa fa-bars" ng-click="sidebarToggle()"></span><a href="#">{{currentIdeaName}}</a></li>
+                  <li click-outside="metaDropdown=false"><a href="#">Idea Overview</a></li>
+                </ol>
+              <ul ng-show="metaDropdown" class="idea-drop">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+              </ul>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+					<li class="top-meta">
+                       <div>
+                          <label>
+                            Status:&nbsp;  
+                            <span>
+                              <label uib-dropdown>
+                                <a id="team-role-dropdown" uib-dropdown-toggle><span ng-if="ideaStatus == false">Draft&nbsp;</span><span ng-if="ideaStatus == true">Published&nbsp;</span><span class="fa fa-chevron-down"></span></a>
+                                <ul class="uib-dropdown-menu" ng-init="status = false">
+                                  <li>
+                                      <a ng-click="ideaStatus = false">Draft<span ng-if="ideaStatus == false" class="fa fa-check pull-right"></span></a>
+                                  </li>
+                                  <li>
+                                      <a ng-click="ideaStatus = true">Published<span ng-if="ideaStatus == true" class="fa fa-check pull-right"></span></a>
+                                  </li>
+                                </ul>
+                              </label>
+                            </span>
+
+
+                          </label>
+                        </div>
+                        <!-- Note: removed ng-show="isIdeaComplete" from the small buttons for now -->
+                        <div class="medium-image-circle medium-circle-button"><span ng-click="pitchToCommittee()" class="fa fa-envelope-o"></span></div>
+                        <div class="medium-image-circle medium-circle-button"><span ng-click="metaDownloadPDF()" class="fa fa-file-pdf-o"></span></div>
+                        <button ng-click="metaSubmitIdeaDraft()" type="button" class="btn ">
+                            Save
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

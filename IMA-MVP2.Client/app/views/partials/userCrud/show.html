@@ -1,0 +1,13 @@
+﻿<div ng-controller='UserController'>
+    <div class="card">
+        <h2>User Information</h2>
+        <p>Name: {{User.name}}</p>
+        <p>Email: {{User.email}}</p>
+        <p>Title: {{User.title}}</p>
+        <p>Location: {{User.location}}</p>
+        <hr />
+        <a ui-sref="users">View All Users</a><br />
+        <a ng-click="delete(User.id)">Delete</a><br />
+        <a ui-sref="user-edit({id:User.id})">Edit</a>
+    </div>
+</div>

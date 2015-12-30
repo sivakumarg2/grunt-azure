@@ -1,0 +1,24 @@
+﻿<div ng-controller="AuthController">
+    <div class="login-card">
+        
+        <div class="text-center">
+            <button ui-sref="login" class="top-text-unfocus">Sign In</button> | <button ui-sref="registration" class="top-text-focus">Sign Up</button> | <button ui-sref="recover-password" class="top-text-unfocus">Recover Password</button>
+        </div>
+
+        <div>
+            <ul>
+                <li class="list_item"><input type="text" ng-model="register.name" placeholder="Name"></li>
+                <li class="list_item"><input type="text" ng-model="register.title" placeholder="Title"></li>
+                <li class="list_item"><input type="text" ng-model="register.email" placeholder="Email"></li>
+                <li class="list_item"><input type="password" ng-model="register.encrypted_password" placeholder="Password"></li>
+                <li class="list_item"><input type="password" ng-model="password_check" placeholder="Re-type Password"></li>
+                <li class="list_item"><input type="text" ng-model="register.location" placeholder="Location"></li>
+            </ul>
+        </div>
+        <div>
+            <button type="button" class="btn-signup" ng-click="submitRegistration(this)">Submit</button>
+        </div>
+        <span class="help-block text-center" ng-show="message">{{ message }}</span>
+        
+    </div>
+</div>

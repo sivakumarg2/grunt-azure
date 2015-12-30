@@ -1,0 +1,52 @@
+﻿
+#Save-Idea-Button {
+  border-radius: 8px;
+  background-color: rgb(108, 189, 125);  
+  width: 363px;
+  height: 52px;
+  text-align:center;
+  text-decoration: none;
+  color:white;
+}
+
+#modal-image-container {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(26, 34, 51);
+  background-color: rgb(236, 236, 236);
+  opacity: 0.24;
+  height: 342px;
+}
+
+body {
+  color: white;
+  background: rgb(29, 31, 39);
+}
+
+button {
+  pointer: cursor;
+}
+
+input[type=file] {
+  width: 500px;
+  
+  .modal-body {
+    position:relative; /* This avoids whatever it's absolute inside of it to go off the container */
+    height: 100px; /* let's imagine that your login box height is 250px . This height needs to be added, otherwise .img-responsive will be like "Oh no, I need to be vertically aligned?! but from which value I need to be aligned??" */
+}
+
+  .img-responsive {
+    width:40px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+    height:30px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-top:-15px; /* This needs to be half of the height */
+    margin-left:-20px; /* This needs to be half of the width */
+}
+   
+  }
+
+
+
+

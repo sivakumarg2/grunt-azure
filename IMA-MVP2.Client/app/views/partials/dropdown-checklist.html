@@ -1,0 +1,17 @@
+﻿
+
+<div class="dropdown-checklist" ng-class="{'zindex': showOptions}">
+    <div class="top-row" ng-click="AssignOpen(!showOptions);">
+        <span ng-class="{'select':dropdown_label == 'Select'}">{{ dropdown_label }}</span>
+        <span class="fa fa-caret-down"></span>
+    </div>
+    <ul ng-show="showOptions">
+        <li class="option-row" ng-repeat="option in options">
+            <input type="checkbox" ng-checked="option.checked">
+            <label>
+                <input type="checkbox" ng-model="option.checked" id="option_{{option.id}}" ng-click="update($event)" />
+                <span>{{option.name}}</span><i ng-show="option.checked" class="fa fa-check"></i>
+            </label>
+        </li>
+    </ul>
+</div>

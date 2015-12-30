@@ -1,0 +1,63 @@
+﻿// General sidebar style
+
+@import '../partials/common/_variables.scss';
+
+.sidebar {
+
+    > ul {
+        > li {
+            background-color: $color-mirage;
+            height: 58px;
+            border-bottom: 1px solid $color-oxford-blue;
+            display: flex;
+            align-items: center;
+
+            > span {
+                margin: 0 16px;
+                font-size: 20px;
+                color: white;
+                width: 20px;
+            }
+
+            h4 {
+                display: inline-block;
+                color: white;
+                white-space: nowrap;
+                overflow: hidden;
+
+            }
+        }
+
+        .subheading {
+            background-color: $color-cloud-burst;
+        }
+
+        .search-bar {
+            border-bottom: none;
+        }
+
+        .call-to-action-button {
+            padding: 20px 10px;
+            height: auto;
+
+            .btn-success {
+                height: 50px;
+                width: 180px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                > span {
+                    font-size: 23px;
+                }
+            }
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.25;
+        }
+    }
+
+}

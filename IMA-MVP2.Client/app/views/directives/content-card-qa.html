@@ -1,0 +1,46 @@
+<ul class="content-card-qa">
+  <li ng-repeat="question in questions">
+    <span class="question-header">
+      <span class="question-text"><strong>{{$index + 1}}. {{ question.q }} <!--, $index={{$index}}, questionStep = {{questionStep}}, initializaing={{initializing}}, showContent {{showContent}}--></strong></span>
+      <span class="fa fa-question-circle tooltip-icon question-text" id="tooltip_{{$index}}" data-toggle="tooltip" title="" data-placement="right" data-original-title="{{ question.tooltip }}"></span>
+      <span class="pull-right question-text controls" ng-show="save">
+          <button ng-show="cancel" ng-click="show_input($index); save=false; edit=true; question.a=showanswer" class="btn-link">Cancel</button>
+        <span ng-show="cancel">|</span>
+          <button ng-click="save_answer($index); save=false; edit=true; showanswer=question.a" class="btn-link">Save</button>
+      </span>
+      <span class="pull-right question-text controls" ng-show="edit">
+        <button ng-click="save=true; edit=false; cancel=true;" class="btn-link">Edit</button>
+      </span>
+    </span>     
+  <h5 ng-show="view_type">
+    <span ng-show="{{ question.type == 'text' }}">{{ question.a }} </span>
+    <span ng-show="{{ question.type == 'checkbox' }}">{{ isAffirmative(question.a) }}</span>
+  </h5>
+
+  <form ng-hide="view_type">
+    <h5 id="container_$index" ng-show="{{ question.type == 'text' }}">
+      <!-- Input -->
+      <div ng-init="showanswer=''; save = true; edit = false; cancel=false" class="edit-state" ng-show="save">
+        <textarea type="text" ng-model="question.a" placeholder="{{ question.placeholder }}" class="form-control" rows="5" />
+      </div>
+      <!-- Display -->
+      <div class="view-state" ng-show="edit">
+        {{ showanswer }}
+      </div>
+    </h5>
+    <h5 ng-show="{{ question.type == 'checkbox' }}">
+      <input type="checkbox" ng-checked="question.a">
+      <label>
+        <input type="{{ question.type }}" ng-model="question.a" placeholder="{{ question.placeholder }}" />
+        <div id="display_{{$index}}">{{ isAffirmative(question.a) }}</div>
+      </label>
+    </h5>
+
+    <div class="row save-and-continue" ng-show="questionStep == $index">
+      <div>Save &amp Continue to Next</div>
+      <div ng-click="save_data(); save=false; edit=true;showanswer=question.a"><span class="fa fa-arrow-down"></span></div>
+    </div>
+  </form>
+
+</li>
+</ul>

@@ -1,0 +1,27 @@
+// For imethod lite progress bar
+
+@import "../partials/common/_variables.scss";
+
+.lite-progress-bar {
+
+	> div {
+		height: 4px;
+		width: 20px;
+		display: inline-block;
+		margin-right: 3px;
+		background-color: $color-athens-gray;
+	}
+
+	> div:nth-child(1) {
+		border-radius: 4px 0 0 4px;
+	}
+
+	> div:nth-last-child(1) {
+		border-radius: 0 4px 4px 0;
+	}
+
+	> .complete {
+		background-color: $color-amaranth;
+	}
+
+}

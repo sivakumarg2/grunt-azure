@@ -1,0 +1,67 @@
+
+<!--
+<div class="{{ message_class }}" ng-show="login">
+<button type="button" class="close" ng-click="cancel(this)">&times;</button>
+  <div class="modal-header">
+    <h4 class="modal-title">Log In</h4>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li><input type="text" ng-model="login.email" placeholder="Email"></li>
+      <li><input type="password" ng-model="login.password" placeholder="Password"></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="loginUser(this)">Login</button><button type="button" class="btn btn-default" ng-click="cancel(this)">Cancel</button>
+  </div>
+  <span class="help-block text-center" ng-show="message">{{ message }}</span>
+  <div class="text-center">
+    <button ng-click="initReset()" class="btn-link">Forgot your password?</button> | <button ng-click="initRegister()" class="btn-link">Register</button>
+  </div>
+</div>
+
+<div class="{{ message_class }}" ng-show="register">
+<button type="button" class="close" ng-click="cancel(this)">&times;</button>
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li><input type="text" ng-model="register.name" placeholder="Name"></li>
+      <li><input type="text" ng-model="register.title" placeholder="Title"></li>
+      <li><input type="email" ng-model="register.email" placeholder="Email"></li>
+      <li><input type="password" ng-model="register.encrypted_password" placeholder="Password"></li>
+      <li><input type="password" ng-model="password_check" placeholder="Re-type Password"></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="submitRegistration(this)">Submit</button><button type="button" class="btn btn-default" ng-click="cancel(this)">Cancel</button>
+  </div>
+    <span class="help-block text-center" ng-show="message">{{ message }}</span>
+  <div class="text-center">
+    <button ng-click="initReset()" class="btn-link">Forgot your password?</button> | <button ng-click="initLogin()" class="btn-link">Login</button>
+  </div>
+</div>
+
+<div class="{{ message_class }}" ng-show="reset">
+<button type="button" class="close" ng-click="cancel(this)">&times;</button>
+  <div class="modal-header">
+    <h4 class="modal-title">Forgot Password</h4>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li><input type="text" ng-model="reset.email" placeholder="Email"></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="submitResetPassword(this)">Submit</button><button type="button" class="btn btn-default" ng-click="cancel(this)">Cancel</button>
+  </div>
+<span class="help-block text-center" ng-show="message">{{ message }}</span>
+  <div class="text-center">
+    <button ng-click="initRegister()" class="btn-link">Register</button> | <button ng-click="initLogin()" class="btn-link">Login</button>
+  </div>
+</div>-->
+<div>
+  <span>Not Logged in!!!</span><br /><br />
+  <button type="button" class="btn-link" ui-sref="login" ng-click="cancel(this)">Login</button> | <button type="button" class="btn-link" ng-click="cancel(this)">Cancel</button>
+</div>

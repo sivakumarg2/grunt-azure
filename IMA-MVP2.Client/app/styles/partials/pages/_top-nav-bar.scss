@@ -1,0 +1,232 @@
+// Styling for top-nav-bar.html
+
+@import "../common/_variables.scss";
+
+header {
+    nav, .page-meta {
+        .container-fluid {
+            background-color: $color-tuna;
+            height: 90px;
+
+            .navbar-header {
+                .navbar-brand {
+                    .company-logo {
+                        margin: 14px 0 0 0;
+                    }
+                }
+            }
+
+            .navbar-collapse {
+                .navbar-left {
+                    ul {
+                        li {
+                            a {
+                                h4 {
+                                    margin: 21px 35px 0 35px;
+                                    color: white;
+                                    display: inline-block;
+                                    font-weight: 300;
+                                    @media screen and (max-width: 1350px){
+                                      margin: 21px 20px 0 20px;
+                                    }
+                                    @media screen and (max-width: 1280px){
+                                      margin: 21px 16px 0 16px;
+                                    }
+                                }
+                            }
+
+                            .btn {
+                                width: 160px;
+                                margin: 22px 0 0 50px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: $color-amaranth;
+                                border: 2px solid $color-amaranth;
+								padding-left: 30px;
+								outline-style: none;
+                                font-weight: 300;
+
+                                span {
+                                    position: absolute;
+                                    left: 86px;
+                                    top: 38px;
+
+                                }
+
+                                h4 {
+                                    margin-left: 5px;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                .navbar-right {
+                    ul {
+                        li {
+                            display: flex;
+                            position: relative;
+
+                            .medium-image-circle {
+                                margin-top: 22px;
+
+                                > span {
+                                    font-size: 28px;
+                                }
+                            }
+
+                            .fa-chevron-down {
+                                color: white;
+                                margin: 37px 0 0 12px;
+                            }
+
+                            > ul {
+                                position: absolute;
+                                left: -90px;
+                                top: 90px;
+                                z-index: 1000;
+                                background-color: white;
+                                padding: 20px 40px;
+                                border: 1px solid $color-alto;
+                                border-bottom-left-radius: 8px;
+                                border-bottom-right-radius: 8px;
+                                box-shadow: 5px 5px 3px 2px rgba(0, 0, 0, 0.1); //rgba used for transparency
+                                li{
+                                  padding: 5px 0 5px 20px;
+                                  a{
+                                  text-decoration: none;
+                                  font-size: 15px;
+                                  color: #000000;
+                                }
+                                  }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .page-meta {
+        border-bottom: 1px solid $color-mystic;
+
+        .container-fluid {
+            background-color: white;
+
+            div {
+                padding: 0;
+
+                .navbar-left {
+                    .breadcrumb {
+                        font-size: 23px;
+                        background-color: white;
+                        margin: 28px 0 0 0;
+                        padding: 0;
+						.fa-bars{
+                          padding-right: 25px;
+                          cursor: pointer;
+                        }
+
+                        li {
+                            a {
+                                color: black;
+                            }
+                        }
+
+                        li:nth-last-child(1) {
+                            a {
+                                color: $color-amaranth;
+                            }
+                        }
+
+                        li:nth-child(2)::before {
+                            color: $color-amaranth;
+                        }
+                    }
+                }
+
+                .navbar-right {
+                    ul {
+						.top-meta{
+
+                        div{
+                          margin: 0 15px 0 0;
+                          label{
+                            font-weight: normal;
+                            span{
+                              color: $color-amaranth;
+                            }
+                            .fa-chevron-down{
+                              color: $color-amaranth;
+                              font-size: 13px;
+                              font-weight:normal;
+                              margin: 38px 0 0 0;
+                              padding-right: 20px;
+                              }
+                            }
+                          }
+					  a{
+					  background-color:white;
+					  text-decoration: none;  
+					  }
+						a:hover{
+						  background-color:white;
+                          text-decoration: none;                         
+                          span{
+                            cursor: pointer;
+                          }
+                        }
+						}
+                        li {
+                            .btn {
+                                width: 150px;
+                                margin: 22px 15px 0 0;
+                                border: 2px solid $color-black;
+                                font-weight: bold;
+                                background-color: white;
+								outline-style: none;
+                            }
+
+                            .btn:nth-child(1) {
+                                margin-right: 10px;
+								outline-style: none;
+                            }
+                        }
+                    }
+					.uib-dropdown-menu{
+                      min-width: 130px;
+                      li{
+                        a{
+                          display: table-cell;
+                          width: 150px;
+                }
+				span{
+				  display: table-cell;
+				  padding-top: 6px;
+            }
+        }
+    }
+	}
+            }
+        }
+    }
+
+    .sticky {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+	.top-btn-signup{
+        color: white;
+        font-size: 13px;
+        font-weight:normal;
+        margin: 30px 0 0 0;
+        padding-right: 20px;
+		background-color: transparent;
+		border-color: transparent;
+		outline-style: none;
+     }
+}

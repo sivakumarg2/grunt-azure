@@ -1,0 +1,385 @@
+<div class="imethod-lite-idea-create" ng-controller="ImethodLiteController" sticky-element>
+    <div ng-class="{'imethod-lite-card': true, 'extra-margin': willItStick}" id="idea-overview-card" class="idea-overview-card-colors">
+        <div class="card-header">
+            <div class="card-title">
+                <span>Idea Overview:</span>
+                3 Steps
+                <span class="pull-right fa fa-chevron-up" ng-animate="{enter: 'rotate', leave: 'rotate-back'}" ng-class="{true: 'rotate', false: 'rotate-back'}[!overviewCollapse]" ng-click="collapseCardToggle('overviewCollapse', true)"></span>
+            </div>
+        </div>
+        <div class="container-fluid annimation-show-hide" ng-show="!overviewCollapse">
+            <div class="row">
+                <div class="col-md-8 step-title">
+                    <span>Step 1:</span>
+                    Name Your Idea
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div ng-class="{'image-container': true, 'gray-background': !idea.background_image && !imageToIdea}" style="background-image:url({{idea.background_image}});">
+                        <span ng-hide="idea.background_image" class="fa fa-picture-o">
+
+                          <div>
+                            <input type='file' id="idea-image-input" file-model="imageToIdea" accept="image/*" ng-disabled="!idea.name" class="idea-image-upload" onchange="angular.element(this).scope().fileNameChanged(this.value)"/>
+							<span>Click to Upload Image</span>
+                          </div>
+                        </span>
+                    </div>
+                    <span ng-show="idea.background_image" class="idea-image-upload-change">
+                        <label for="idea-image-input-change">Change Image</label>
+                        <input type='file' id="idea-image-input-change" file-model="imageToIdea" accept="image/*" onchange="angular.element(this).scope().fileNameChanged(this.value)" />
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="idea-name" class="input-title">
+                            Idea Name
+                            <span class="fa fa-question-circle tooltip-icon" id="tooltip-namer" data-placement="right"></span>
+                        </label>
+                        <input type="text" class="form-control" id="idea-name" ng-model="idea.name" placeholder="{{name_placeholder}}" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="vision" class="input-title">
+                          Idea Description
+                          <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                        </label>
+                      <textarea class="form-control medium-text-input" id="idea-description" rows="3" ng-model="idea.description" placeholder="Add your description here."></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tags" class="input-title">
+                                  Descriptive Tags
+                                  <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                                </label>
+                                <input type="text" class="form-control" id="idea_tags" ng-keyup="addIdeaTag($event)" ng-model="typedTag", placeholder="Separate tags with a comma.">
+                            </div>
+                            <ul>
+                                <li ng-repeat="ideaTag in idea.tags" class="keyword-tags">{{capitalizeFirstLetter(ideaTag)}}
+
+                                    <span class="fa fa-times-circle" ng-click="removeTag(ideaTag)"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div ng-class="{'attachment-container': true}">
+						<label for="idea-attachment" class="input-title"><span class="fa fa-paperclip"></span> Attach a file</label>
+                        <input id="idea-attachment" type="file" file-model="attachmentToIdea"/>
+						<ul>
+						  <li ng-repeat="attachment in ideaAttachments">
+							<a ng-href="{{attachment.url}}">{{attachment.original_file_name}}</a>
+							<span ng-click="removeAttachment(attachment.id)"> (Remove)</span>
+						  </li>
+						</ul>
+                    </div>-->
+                </div>
+                <div class="col-md-4">
+                    <div class="teammember">
+                        <div class="team-header">Team</div>
+                        <div class="teammember-body">
+                            <div class="entry" ng-repeat="member in teamMembers">
+                                <span ng-class="{'unsaved-member': (member.role_id == 4)}">
+                                    <span class="mini-image-circle" style="background-image: url('{{member.user.avatar_url}}');text-align:center;"><span class="fa fa-user" ng-hide="member.user.avatar_url"></span></span>
+                                </span>
+                                <span>
+                                    {{member.user.name}}
+                                    <i class="fa fa-star" ng-show="member.user.id == currentUserId"></i>
+                                </span>
+                                <span>
+                                    <label uib-dropdown>
+                                        <a ng-if="member.role_id != -1" href id="team-role-dropdown" uib-dropdown-toggle><span>{{teamMemberRoles[member.role_id]}}</span></a>
+                                        <a ng-if="member.role_id == -1" href id="team-role-dropdown" uib-dropdown-toggle>Select Role</a>
+                                        <ul class="uib-dropdown-menu role-menu">
+                                            <li ng-repeat="role in teamMemberRoles">
+                                                <a ng-click="saveTeamMember(member.user.id, role)">{{role}}<span ng-if="role == teamMemberRoles[member.role_id]" class="fa fa-check pull-right"></span></a>
+                                            </li>
+                                        </ul>
+                                    </label>
+                                </span>
+                                <span class="fa fa-times" ng-click="removeTeamMember(teamMembers[$index])" ng-show="member.user.id !== currentUserId"></span>
+                            </div>
+                            <div class="entry">
+                                <div ng-click="showTeamSearch = !showTeamSearch;noUserFound=false;"><span class="add-team-member"><span class="fa fa-user-plus pull-left"></span>Add Team Member</span></div>
+                                <div ng-show="showTeamSearch" class="team-search">
+                                    <input type="text" ng-model="inputTeamMember" uib-typeahead="(companyUser.name + ' (' + companyUser.email + ')') for companyUser in companyUsers | filter:$viewValue | limitTo:8" class="form-control" ng-keyup="addTeamMember($event)" typeahead-on-select="onSelect($item, $model, $label)" placeholder="Search users or email">
+                                </div>
+                            </div>
+                            
+                            <div class="user-send-mail" ng-show="noUserFound">
+                                <button type="button" class="close" ng-click="noUserFound = !noUserFound">&times;</button>
+                                <div>
+                                    <h4>Search for Team Members</h4>
+                                    <ul>
+                                        <li><input type="text" ng-model="emailTeamMember" class="form-control" disabled></li>
+                                        <li><span>The person you're search could not found in the company database. Click "Send" below to send email invite to this person to register.</span></li>
+                                        <li><button ng-click="sendEmail()" type="button" class="btn">Send</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="labels">
+                        <div class="labels-header">Labels</div>
+                        <div class="idea-labels label-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--Type of Offering-->
+                                        <dropdown-checklist options="typeOfOffering" selection="idea.type_of_offering_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Product Platform-->
+                                        <dropdown-checklist options="productPlatform" selection="idea.product_platform_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Customer Segment-->
+                                        <div title="Select Product Platform First" class="dropdown-checklist" ng-hide="isProductPlatformSelected">
+                                            <div class="top-row disabled">
+                                                <span>Select</span>
+                                                <span class="fa fa-caret-down"></span>
+                                            </div>
+                                        </div>
+                                        <dropdown-checklist ng-show="isProductPlatformSelected" options="customerSegment" selection="idea.customer_segment_ids"></dropdown-checklist>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--Product Category-->
+                                        <div title="Select Product Platform First" class="dropdown-checklist" ng-hide="isProductPlatformSelected">
+                                            <div class="top-row disabled">
+                                                <span>Select</span>
+                                                <span class="fa fa-caret-down"></span>
+                                            </div>
+                                        </div>
+                                        <dropdown-checklist ng-show="isProductPlatformSelected" options="productCategory" selection="idea.product_category_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Technology Category-->
+                                        <dropdown-checklist options="technologyCategory" selection="idea.technology_category_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Theme-->
+                                        <div title="Select Product Platform First" class="dropdown-checklist" ng-hide="isProductPlatformSelected">
+                                            <div class="top-row disabled">
+                                                <span>Select</span>
+                                                <span class="fa fa-caret-down"></span>
+                                            </div>
+                                        </div>
+                                        <dropdown-checklist ng-show="isProductPlatformSelected" options="theme" selection="idea.theme_ids"></dropdown-checklist>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--Challenge-->
+                                        <div class="dropdown-checklist" title="Select Theme First" ng-hide="isThemeSelected">
+                                            <div class="top-row disabled">
+                                                <span>Select</span>
+                                                <span class="fa fa-caret-down"></span>
+                                            </div>
+                                        </div>
+                                        <dropdown-checklist ng-show="isThemeSelected" options="challenge" selection="idea.challenge_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Target Region-->
+                                        <dropdown-checklist options="region" selection="idea.region_ids"></dropdown-checklist>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--Have You Filed an Invention Disclosure Form-->
+                                        <dropdown-checklist options="selectBoolean" selection="idea.invention_disclosure"></dropdown-checklist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>             
+                    <div class="attachment">
+                        <div class="attachment-header">Attachments</div>                        
+                        <div class="attachment-body">
+                            <label for="idea-attachment" class="input-title"><span class="fa fa-paperclip"></span> Attach a file</label>
+                            <input id="idea-attachment" type="file" file-model="attachmentToIdea" />
+                            <ul>
+                                <li ng-repeat="attachment in ideaAttachments">
+                                    <a target="_blank" ng-href="{{attachment.url}}">{{attachment.original_file_name}}</a>
+                                    <span ng-click="removeAttachment(attachment.id)"> (Remove)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+            <div class="row" >
+                <div class="col-md-8 step-title">
+                    <span>Step 2:</span>
+                    Add Idea Labels<textarea cols="150" rows="5">{{productCategory}}</textarea>
+                </div>
+            </div>
+            <div class="idea-labels">
+               <div class="container-fluid">
+                   <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Type of Offering
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <dropdown-checklist options="typeOfOffering" selection="idea.type_of_offering_ids"></dropdown-checklist>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Product Platform
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <dropdown-checklist options="productPlatform" selection="idea.product_platform_ids"></dropdown-checklist>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Customer Segment
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <div class="dropdown-checklist disabled" ng-hide="isProductPlatformSelected">
+                                <div class="top-row">
+                                    <span>Select Product Platform First</span>
+                                    <span class="fa fa-caret-down"></span>
+                                </div>
+                            </div>
+                            <dropdown-checklist ng-show="isProductPlatformSelected" options="customerSegment" selection="idea.customer_segment_ids"></dropdown-checklist>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Product Category
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <div class="dropdown-checklist disabled" ng-hide="isProductPlatformSelected">
+                                <div class="top-row">
+                                    <span>Select Product Platform First</span>
+                                    <span class="fa fa-caret-down"></span>
+                                </div>
+                            </div>
+                            <dropdown-checklist ng-show="isProductPlatformSelected" options="productCategory" selection="idea.product_category_ids"></dropdown-checklist>                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Technology Category
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <dropdown-checklist options="technologyCategory" selection="idea.technology_category_ids"></dropdown-checklist>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Theme
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <div class="dropdown-checklist disabled" ng-hide="isProductPlatformSelected">
+                                <div class="top-row">
+                                    <span>Select Product Platform First</span>
+                                    <span class="fa fa-caret-down"></span>
+                                </div>
+                            </div>
+                            <dropdown-checklist ng-show="isProductPlatformSelected" options="theme" selection="idea.theme_ids"></dropdown-checklist>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--<div class="col-md-4">
+                            <div class="input-title">
+                                Challenge
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <div class="dropdown-checklist disabled" ng-hide="isThemeSelected">
+                                <div class="top-row">
+                                    <span>Select Theme First</span>
+                                    <span class="fa fa-caret-down"></span>
+                                </div>
+                            </div>
+                            <dropdown-checklist ng-show="isThemeSelected" options="challenge" selection="idea.challenge_ids"></dropdown-checklist>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Target Region
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <dropdown-checklist options="region" selection="idea.region_ids"></dropdown-checklist>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-title">
+                                Have You Filed an Invention Disclosure Form
+                                <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                            </div>
+                            <dropdown-checklist options="selectBoolean" selection="idea.invention_disclosure"></dropdown-checklist>                              
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <!--<div ng-class="{'build-team': true}">
+                <div class="row">
+                    <div class="col-md-8 step-title">
+                        <span>Step 3:</span>
+                        Build Your Team
+                    </div>
+                </div>
+                <div class="list-view">
+                    <header>
+                        <span>Team Members</span>
+                        <span>Contact</span>
+                        <span>Local Time</span>
+                        <span>Last Active</span>
+                        <span>Role</span>
+                    </header>
+                    <div class="entry" ng-repeat="member in teamMembers">
+                        <span ng-class="{'unsaved-member': (member.role_id == 4)}">
+                            <div class="big-image-circle" style="background-image: url('{{member.user.avatar_url}}');"><span class="fa fa-user" ng-hide="member.user.avatar_url"></span></div>
+                            {{member.user.name}}
+                            <span class="fa fa-star" ng-show="member.user.id == currentUserId"></span>
+                        </span>
+                            <span>{{member.user.email}}</span>
+                            <span>{{member.user.local_time}}</span>
+                            <span ng-bind="member.user.last_active | date:'MMMM dd, yyyy'"></span>
+                            <span>
+                                <label uib-dropdown>
+                                    <a ng-if="member.role_id != -1" href id="team-role-dropdown" uib-dropdown-toggle><span>{{teamMemberRoles[member.role_id]}}</span></a>
+                                    <a ng-if="member.role_id == -1" href id="team-role-dropdown" uib-dropdown-toggle>Select Role</a>
+                                    <ul class="uib-dropdown-menu">
+                                        <li ng-repeat="role in teamMemberRoles">
+                                            <a ng-click="saveTeamMember(member.user.id, role)">{{role}}<span ng-if="role == teamMemberRoles[member.role_id]" class="fa fa-check pull-right"></span></a>
+                                        </li>
+                                    </ul>
+                                </label>
+                            </span>
+                            <span class="fa fa-times" ng-click="removeTeamMember(teamMembers[$index])" ng-show="member.user.id !== currentUserId"></span>
+                    </div>
+                    <div class="entry" ng-click="showTeamSearch = !showTeamSearch;noUserFound=false;">
+                        <span class="add-team-member"><span class="fa fa-user-plus pull-left"></span>Add Team Member</span>
+                    </div>
+                    <div ng-show="showTeamSearch" class="team-search">
+                        <input type="text" ng-model="inputTeamMember" uib-typeahead="(companyUser.name + ' (' + companyUser.email + ')') for companyUser in companyUsers | filter:$viewValue | limitTo:8" class="form-control" ng-keyup="addTeamMember($event)" typeahead-on-select="onSelect($item, $model, $label)" placeholder="Search users or email" ng-disabled="current_step < 4">
+                    </div>
+                    <div class="user-send-mail" ng-show="noUserFound">
+                        <button type="button" class="close" ng-click="noUserFound = !noUserFound">&times;</button>
+                        <div>
+                            <h4>Search for Team Members</h4>
+                            <ul>
+                                <li><input type="text" ng-model="emailTeamMember" class="form-control" disabled></li>
+                                <li><span>The person you're search could not found in the company database. Click "Send" below to send email invite to this person to register.</span></li>
+                                <li><button ng-click="sendEmail()" type="button" class="btn">Send</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="save-row">
+                <div ng-click="submitIdea()" class="medium-image-circle medium-circle-button">
+                    <span class="fa fa-floppy-o"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-include src="'/views/partials/imethod-lite-insight-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-problem-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-solution-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-business-model-card.html'"></ng-include>
+
+</div>

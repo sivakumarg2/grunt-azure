@@ -1,0 +1,30 @@
+<nav ng-class="{'navbar': true, 'navbar-default': true, 'page-meta': true, 'sticky': willItStick}" sticky-element>
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" ng-controller="ImethodMetaController">
+            <div class="navbar-left">
+                <ol class="breadcrumb">
+                  <li><a href="#">Idea Name</a></li>
+                  <li><a href="#">Idea Overview</a></li>
+                </ol>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button ng-show="ideaOwnerId == user_id" ng-click="metaEditIdea()" type="button" class="btn ">
+                            Edit Idea
+                        </button>
+
+                        <button ng-click="metaDownloadPDF()" type="button" class="btn" ng-show="isIdeaComplete">
+                            Download PDF
+                        </button>
+
+                        <button ng-click="pitchToCommittee()" type="button" class="btn" ng-show="isIdeaComplete">
+                            Email Pitch
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

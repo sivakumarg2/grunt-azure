@@ -1,0 +1,14 @@
+﻿@import '../partials/common/_variables.scss';
+@import '../partials/common/_mixins.scss';
+
+.image-container {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    @include breakpoint(tablet) {
+        display: block;
+    }
+}
+

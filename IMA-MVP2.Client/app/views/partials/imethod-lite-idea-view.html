@@ -1,0 +1,182 @@
+<div class="imethod-lite-idea-create" ng-controller="ImethodLiteViewController" sticky-element>
+    <div ng-class="{'imethod-lite-card': true, 'collapse-imethod-lite-card': collapseCard('nameYourIdea'), 'extra-margin': willItStick}" id="idea-overview-card">
+        <div class="card-header">
+            <div class="card-title">
+                <span>Idea Overview:</span>VIEW
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="image-container" style="background-image:url({{idea_display.background_image}});">
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="form-group">
+                            <h3>{{idea_display.name}}</h3>
+                            {{idea_display.description}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                             Descriptive Tags
+                            <ul>
+                                <li ng-repeat="ideaTag in idea_display.tags" class="keyword-tags">{{capitalizeFirstLetter(ideaTag)}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-8 step-title">
+                    <span>Idea Labels</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Type of Offering
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="offering in idea_display.type_of_offerings">{{offering.name}}</li>
+                    <ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Product Platform
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="platform in idea_display.product_platforms">{{platform.name}}</li>
+                    <ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Customer Segment
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="segment in idea_display.customer_segments">{{segment.name}}</li>
+                    <ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Product Category
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="category in idea_display.product_categories">{{category.name}}</li>
+                    <ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Theme
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="theme in idea_display.themes">{{theme.name}}</li>
+                    <ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Challenge
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="challenge in idea_display.challenges">{{challenge.name.name}}</li>
+                    <ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-title">
+                        Target Region
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </div>
+                    <ul>
+                        <li class="li-view" ng-repeat="region in idea_display.regions">{{region.name}}</li>
+                    <ul>
+                </div>
+                <div class="col-md-4">
+                    <label>
+                        Invention disclosure form filed: <span>{{idea_display.form_filed}}</span>
+                        <span class="fa fa-question-circle tooltip-icon" data-toggle="tooltip" title="Hooray!" data-placement="right"></span>
+                    </label>
+                </div>
+            </div>
+            <div ng-class="{'build-team': true}">
+            <div class="row">
+                <div class="col-md-8 step-title">
+                    <span>Your Team</span>
+                </div>
+            </div>
+            <div class="list-view">
+                <header>
+                    <span>Team Members</span>
+                    <span>Contact</span>
+                    <span>Local Time</span>
+                    <span>Last Active</span>
+                    <span>Role</span>
+                </header>
+                <!-- To-do: Angular ng-repeat for these entries. Also add plus icon to Add Team Member button below-->
+                <div class="entry" ng-repeat="member in teamMembers">
+                    <span>
+                        <div class="big-image-circle" style="background-image: url('{{member.user.avatar_url}}');"></div>
+                        {{member.user.name}}
+                        <span class="fa fa-star"></span>
+                    </span>
+                    <span>{{member.user.email}}</span>
+                    <span>{{member.user.local_time}}</span>
+                    <span ng-bind ="member.user.last_active | date:'MMMM dd, yyyy'"></span>
+                    <span>{{member.user.role}}</span>
+                </div>
+                <div class="entry" ng-show="!teamMembers">No Team Members</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <ng-include src="'/views/partials/imethod-lite-insight-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-problem-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-solution-card.html'"></ng-include>
+
+    <ng-include src="'/views/partials/imethod-lite-business-model-card.html'"></ng-include>
+
+<div class="debug">
+{{idea_display}}
+<br />
+toggleNameEdit:{{toggleNameEdit}}
+<br />
+typedTag: {{typedTag}}
+<br />
+toggleNameFocus: {{toggleNameFocus}}
+<br/>
+<a ui-sref="imethodLiteInsight">To Insight page</a>
+<br/>
+<br/>
+collapseCardArray: {{collapseCardArray}}
+<br/>
+<small>
+typeOfOfferingSelections {{typeOfOfferingSelections}}
+<br/>
+productPlatformSelections {{productPlatformSelections}}
+<br/>
+customerSegmentSelections {{customerSegmentSelections}}
+<br/>
+productCategorySelections {{productCategorySelections}}
+<br/>
+themeSelections {{themeSelections}}
+<br/>
+challengeSelections {{challengeSelections}}
+<br/>
+regionSelections {{regionSelections}}
+</small>
+</div>
+</div>

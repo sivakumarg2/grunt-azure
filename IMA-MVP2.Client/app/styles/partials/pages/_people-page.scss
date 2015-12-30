@@ -1,0 +1,21 @@
+.people-page {
+	.row {
+		.col-md-12 {
+			.tag-list {
+				li {
+					display: inline-block;
+				}
+			}
+
+			.nav {
+				.dropdown:hover {
+					.dropdown-menu {
+						display: block;
+						margin-top: -2px;
+					}
+				}
+			}
+
+		}
+	}
+}

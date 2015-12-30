@@ -1,0 +1,42 @@
+﻿// Using bootstrap's modal
+
+@import '../common/_variables.scss';
+@import '../../bourbon/_bourbon.scss';
+
+.content-card-qa{
+  .question-header{
+    .question-text{
+        padding: 45px 0 15px 0;
+      }
+    .controls{
+      .btn-link{
+        color: $color-amaranth;
+      }
+    }
+  }
+}
+
+.annimation-show-hide {
+  @include transition(opacity .2s linear, max-height .2s linear);
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.annimation-show-hide.ng-hide {
+  opacity:0;
+  max-height: 0px;
+}
+
+.rotate,
+.rotate-back {
+    -webkit-transition: 200ms ease all;
+    -moz-transition: 200ms ease all;
+    -o-transition: 200ms ease all;
+    transition: 200ms ease all;
+}
+.rotate {
+    -webkit-transform: rotate(180deg);
+}
+.rotate-back {
+    -webkit-transform: rotate(0deg);
+}

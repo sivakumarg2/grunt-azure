@@ -1,0 +1,29 @@
+<!-- Application Layout -->
+<header>
+  <ng-include src="'/views/partials/top-nav-bar.html'"></ng-include>
+  <div ui-view="pageMeta"></div>
+</header>
+
+<div id="pageBody">
+  <nav ng-hide="noSidebarForThisState">
+    <div ui-view="sidebar"></div>
+  </nav>
+
+  <div ui-view="content" id="content"></div>
+
+</div>
+
+<footer>
+  <div>
+    <a target="_blank" href="http://www.innovatorsdna.com">&copy;2015 The Innovator&#39;s DNA</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a ng-click="open('sm')">Terms of Service</a>
+  </div>
+</footer>
+
+<script type="text/ng-template" id="termsOfServiceModal.html">
+    <div class="modal-header">
+        <span class="fa fa-times pull-right" ng-click="ok()"></span>
+    </div>
+    <div>
+    	<p>Terms of Service? Don't worry, we'll get you some verbiage soon.</p>
+    </div>
+</script>

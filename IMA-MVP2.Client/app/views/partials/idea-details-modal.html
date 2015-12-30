@@ -1,0 +1,90 @@
+<div class="idea-navigation">
+    <ul>
+        <li><span class="icon-span fa fa-close fa-2x" ng-click="" data-dismiss="modal"></span></li>        
+        <li><span class="icon-span fa fa-chevron-circle-left fa-2x" ng-click="previousIdeaDetails()"></span></li>
+        <li><span class="icon-span fa fa-chevron-circle-right fa-2x" ng-click="nextIdeaDetails()"></span></li>
+    </ul>
+</div>
+<div class="idea-details">
+    <ul>
+        <li><div class="image-container-details gray-background" style="background-image: url({{ideaDetails.background_image}});">  </li>
+        <li>
+            <div class="row">
+                <div class="col-md-8 idea-details-left">
+                    <div>
+                        <span class="idea-name">{{ideaDetails.name}}</span>
+                        <span class="pull-right">
+                            <ul class="ul-vote">
+                                <li><i class="fa fa-sort-asc fa-1x"></i></li>
+                                <li>{{ideaDetails.voteCount}}</li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div>{{ideaDetails.description}}</div>
+					<div class="idea-comment">Overview | Comments</div>
+                    <div class="idea-comment" ng-init="comment.parent_id=0;comment.text=''">
+                        <div ng-repeat="cmt in ideaDetails.commentedUsers | filter:{parent_id : 0}">
+                            <div class="comment-user">
+                                <span class="mini-image-circle" style="background-image: url('{{cmt.user.avatar_url}}'); background-color: #eef1f4; text-align: center;">
+                                    <i class="fa fa-user fa-1x" ng-hide="cmt.user.avatar_url"></i>
+                                </span><span>{{cmt.user.first_name}}</span><span>-</span><span>{{cmt.user.role}}</span>
+                            </div>
+                            <div class="user-comment">{{cmt.comment_text}}</div>
+                            <span href="#idea-comments" ng-click="comment.parent_id=cmt.id">Reply</span>
+                            <!--Display sub comments here-->
+                            <div style="padding-left:50px" ng-repeat="scmt in ideaDetails.commentedUsers | filter:{parent_id : cmt.id}">
+                                <div class="comment-user">
+                                    <span class="mini-image-circle" style="background-image: url('{{cmt.user.avatar_url}}'); background-color: #eef1f4; text-align: center;">
+                                        <i class="fa fa-user fa-1x" ng-hide="cmt.user.avatar_url"></i>
+                                    </span><span>{{scmt.user.first_name}}</span><span>-</span><span>{{scmt.user.role}}</span>
+                                </div>
+                                <div class="user-comment">{{scmt.comment_text}}</div>
+                            </div>
+                        </div>
+                        <div id="idea-comments">
+                            <textarea rows="5" ng-model="comment.text" placeholder="Add a comment" class="form-control" />
+                            <button class="btn" ng-click="postComment(comment.parent_id, ideaDetails, comment)">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 idea-details-right">
+				<div class="share">
+                    <div>Share</div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <span ng-click="openTwitter(ideaDetails.idea_id)" class="fa fa-twitter"></span>
+                                </li>
+                                <li>
+                                    <span ng-click="openFacebook(ideaDetails.idea_id)" class="fa fa-facebook"></span>
+                                </li>
+                                <li>
+                                    <span ng-click="openLinkedIn(ideaDetails.idea_id)" class="fa fa-linkedin"></span>
+                                </li>
+                                <li>
+                                    <span ng-click="openMail(ideaDetails.idea_id)" class="fa fa-envelope"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="voters">
+                        <div>Team<span ng-click="moveNext()" class="pull-right fa fa-chevron-right fa-1x"></span><span ng-click="movePrevious()" class="pull-right fa fa-chevron-left fa-1x"></span></div>
+                        <div>
+                            <span ng-repeat="team in ideaDetails.teamMembers" class="mini-image-circle user-space" style="background-image: url('{{team.user.avatar_url}}');">
+                                <i class="fa fa-user fa-1x" ng-hide="team.user.avatar_url"></i>
+                            </span> 
+                        </div>
+                    </div>
+                    <div class="upvotes">
+                        <div>Upvotes<span ng-click="moveNext()" class="pull-right fa fa-chevron-right fa-1x"></span><span ng-click="movePrevious()" class="pull-right fa fa-chevron-left fa-1x"></span></div>                
+                        <div>
+                            <span ng-repeat="vote in ideaDetails.voteUsers" class="mini-image-circle user-space" style="background-image: url('{{vote.user.avatar_url}}');">
+                                <i class="fa fa-user fa-1x" ng-hide="vote.user.avatar_url"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

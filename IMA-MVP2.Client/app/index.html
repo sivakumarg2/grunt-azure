@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link href="styles/vendors/bootstrap-theme.css" rel="stylesheet" />
+  <link href="styles/vendors/bootstrap.css" rel="stylesheet" />
+  <link href="styles/vendors/jasmine.css" rel="stylesheet" />
+  <link href="styles/vendors/ui-bootstrap-csp.css" rel="stylesheet" />
+  <!-- endbuild -->
+</head>
+<body ng-app="ima-app" ng-controller="AppController">
+  <div class="preloader" ng-show="showPreloader">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+  <div class="preloader-background" ng-show="showPreloader"></div>
+  <div ui-view ng-class="{'preloader-blur': showPreloader}" id="layout" ng-controller="NavController"></div>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    !function (A, n, g, u, l, a, r) {
+      A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+
+  <!-- Controllers -->
+  <script src="scripts/controllers/AppController.js"></script>
+  <script src="scripts/controllers/AuthController.js"></script>
+  <script src="scripts/controllers/NavController.js"></script>
+  <script src="scripts/controllers/ProfileController.js"></script>
+  <script src="scripts/controllers/IdeaController.js"></script>
+  <script src="scripts/controllers/UserController.js"></script>
+  <script src="scripts/controllers/ImethodLiteController.js"></script>
+  <script src="scripts/controllers/ImethodLiteViewController.js"></script>
+  <script src="scripts/controllers/ImethodMetaController.js"></script>
+  <script src="scripts/controllers/SidebarController.js"></script>
+  <script src="scripts/controllers/PeopleController.js"></script>
+
+  <!-- Services -->
+  <script src="scripts/services/AuthService.js"></script>
+  <script src="scripts/services/BusinessModelService.js"></script>
+  <script src="scripts/services/ProblemService.js"></script>
+  <script src="scripts/services/InsightService.js"></script>
+  <script src="scripts/services/SolutionService.js"></script>
+  <script src="scripts/services/UserService.js"></script>
+  <script src="scripts/services/IdeaService.js"></script>
+  <script src="scripts/services/NavService.js"></script>
+  <script src="scripts/services/TeamMemberService.js"></script>
+  <script src="scripts/services/HelperService.js"></script>
+  <script src="scripts/services/CollapseService.js"></script>
+  <script src="scripts/services/TagService.js"></script>
+  <script src="scripts/services/UploadFileService.js"></script>
+  <script src="scripts/services/ClickOutsideService.js"></script>
+  <script src="scripts/services/TagService.js"></script>
+  <script src="scripts/services/IdeaGroupService.js"></script>
+  <script src="scripts/services/CommentService.js"></script>
+  <script src="scripts/services/VoteService.js"></script>
+  <script src="scripts/services/FollowingService.js"></script>
+
+  <!-- RemoteAPI Services -->
+  <script src="scripts/api/IdeaApi.js"></script>
+  <script src="scripts/api/AuthApi.js"></script>
+  <script src="scripts/api/UserApi.js"></script>
+  <script src="scripts/api/InsightApi.js"></script>
+  <script src="scripts/api/ProblemApi.js"></script>
+  <script src="scripts/api/SolutionApi.js"></script>
+  <script src="scripts/api/BusinessModelApi.js"></script>
+  <script src="scripts/api/UploadApi.js"></script>
+  <script src="scripts/api/TeamMemberApi.js"></script>
+  <script src="scripts/api/AttachmentApi.js"></script>
+  <script src="scripts/api/TagApi.js"></script>
+  <script src="scripts/api/IdeaGroupApi.js"></script>
+  <script src="scripts/api/CommentApi.js"></script>
+  <script src="scripts/api/VoteApi.js"></script>
+  <script src="scripts/api/FollowingApi.js"></script>
+
+  <!--Custom Directives-->
+  <script src="scripts/directives/filedrop-dir.js"></script>
+  <script src="scripts/directives/fileread-dir.js"></script>
+  <script src="scripts/directives/DropdownChecklistDirective.js"></script>
+  <script src="scripts/directives/ClickRotateDirective.js"></script>
+  <script src="scripts/directives/ContentCardDirective.js"></script>
+  <script src="scripts/directives/ContentCardQADirective.js"></script>
+  <script src="scripts/directives/StickyElementDirective.js"></script>
+  <script src="scripts/directives/UploadFileDirective.js"></script>
+  <script src="scripts/directives/ClickOutsideDirective.js"></script>
+  <script src="scripts/directives/IdeaDetailsModalDirective.js"></script>
+
+  <!-- Constants -->
+  <script src="scripts/constants.js"></script>
+
+  <!-- Routes -->
+  <script src="scripts/routes.js"></script>
+  <!-- endbuild -->
+
+</body>
+</html>

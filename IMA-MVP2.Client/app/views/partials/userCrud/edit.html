@@ -1,0 +1,15 @@
+﻿<h1>User Edit</h1>
+<div class="card" ng-controller="UserController">
+    <h2>Edit User</h2>
+    <div class="entry">
+        <h2>Minimum Required Fields</h2>
+        Name: <input name="name" ng-model="User.name"/><br />
+        CompanyId: <input name="CompanyId" ng-model="User.CompanyId" type="number" /><br />
+        Email: <input name="email" ng-model="User.email" /><br />
+        Reset Password Token: <input name="reset_password_token" ng-model="User.reset_password_token" />
+        <h2>Optional Fields</h2>
+        Title: <input name="title" ng-model="User.title" /><br />
+        Location: <input name="location" ng-model="User.location" /><br />
+        <input type="submit" ng-click="saveUser()" />
+    </div>
+</div>

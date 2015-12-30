@@ -1,0 +1,21 @@
+<div ng-controller="AuthController">
+    <div class="login-card">
+        <div>
+           
+            <div class="text-center">
+                <button ui-sref="login" class="top-text-focus">Sign In</button> | <button ui-sref="registration" class="top-text-unfocus">Sign Up</button> | <button ui-sref="recover-password" class="top-text-unfocus">Recover Password</button>
+            </div>
+            <div>
+                <ul>
+                    <li class="list_item"><input type="text" ng-model="login.email" placeholder="Email"></li>
+                    <li class="list_item"><input type="password" ng-model="login.password" placeholder="Password"></li>
+                </ul>
+            </div>           
+        </div>
+        <div>
+            <button type="button" class="btn-signup" ng-click="loginUser(this)">Sign In</button>
+        </div>
+        <span class="help-block text-center" ng-show="message">{{ message }}</span>
+        
+    </div>
+</div>
