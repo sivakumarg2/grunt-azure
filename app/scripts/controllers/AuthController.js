@@ -14,7 +14,7 @@
       $scope.cancel = function(modal){
         modal.$dismiss("Cancelled");
       }
-	alert("hhhh:testing:1:1:3:5");
+	alert("hhhh:testing:1:1:3:6");
       $scope.loginUser = function (modal) {
         var params = $.param($scope.login);
         AuthService.login(params).then(function(response){
