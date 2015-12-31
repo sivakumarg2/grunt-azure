@@ -14,7 +14,7 @@
       $scope.cancel = function(modal){
         modal.$dismiss("Cancelled");
       }
-alert("working again");
+alert("working again: alert again");
       $scope.loginUser = function (modal) {
         var params = $.param($scope.login);
         AuthService.login(params).then(function(response){
